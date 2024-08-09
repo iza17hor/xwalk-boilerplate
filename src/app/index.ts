@@ -10,7 +10,7 @@ import { initSampleRUM } from './tasks/initSampleRUM';
 import { loadCSS } from './tasks/loadCSS';
 import { config } from '../../config';
 import { loadBlocks } from './tasks/loadBlocks';
-import { transformSection } from './tasks/transformSections';
+import { transformSections } from './tasks/transformSections';
 import { decorateBlocks } from './tasks/decorateBlocks';
 import { sampleRUM } from './tasks/sampleRUM';
 import { waitForLCP } from './tasks/waitForLCP';
@@ -136,7 +136,7 @@ class HLX {
       try {
         const main = document.querySelector('main') as HTMLElement;
         decorateButtons(main);
-        transformSection(main);
+        transformSections(main);
         decorateBlocks(main);
         setTimeout(() => {
           document.body.classList.add('show');
