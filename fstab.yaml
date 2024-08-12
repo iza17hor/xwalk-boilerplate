@@ -1,5 +1,5 @@
 mountpoints:
   /:
-    url: https://drive.google.com/drive/u/0/folders/1Eyh1YtzqPOsZHm4thi0NgK_fedQJErcT
+    url: https://localhost:8443/bin/franklin.delivery/diva-e-aem/xwalk-boilerplate/main
     type: 'markup'
     suffix: '.html'
