@@ -1,6 +1,8 @@
 import './components/icon/icon';
 import { initHLXApp } from './app/init';
 
+console.log('main.ts loaded');
+
 initHLXApp();
 
 declare global {
