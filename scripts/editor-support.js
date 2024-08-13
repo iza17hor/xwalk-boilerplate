@@ -6,7 +6,7 @@ import {
   loadBlocks,
   transformSections,
 } from '../dist/main/main.js';
-import { decorateRichtext } from './editor-support-rte';
+import { decorateRichtext } from './editor-support-rte.js';
 
 async function applyChanges(event) {
   // redecorate default content and blocks on patches (in the properties rail)
