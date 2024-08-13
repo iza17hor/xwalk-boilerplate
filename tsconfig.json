@@ -33,12 +33,5 @@
       "Utils/*": ["./src/utils/*"],
     },
   },
-  "include": [
-    "./*.ts",
-    "scripts/**/*.ts",
-    "src/**/*.ts",
-    "src/**/*.json",
-    "scripts/editor-support-rte.js",
-    "scripts/editor-support.js",
-  ],
+  "include": ["./*.ts", "scripts/**/*.ts", "src/**/*.ts", "src/**/*.json"],
 }

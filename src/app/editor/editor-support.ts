@@ -1,10 +1,10 @@
-import { decorateBlock } from '../src/app/tasks/decorateBlock.ts';
-import { decorateBlocks } from '../src/app/tasks/decorateBlocks.ts';
-import { decorateButtons } from '../src/app/tasks/decorateButtons.ts';
-import { loadBlock } from '../src/app/tasks/loadBlock.ts';
-import { loadBlocks } from '../src/app/tasks/loadBlocks.ts';
-import { transformSections } from '../src/app/tasks/transformSections.ts';
-import { decorateRichtext } from './editor-support-rte.js';
+import { decorateBlock } from '../tasks/decorateBlock';
+import { decorateBlocks } from '../tasks/decorateBlocks';
+import { decorateButtons } from '../tasks/decorateButtons';
+import { loadBlock } from '../tasks/loadBlock';
+import { loadBlocks } from '../tasks/loadBlocks';
+import { transformSections } from '../tasks/transformSections';
+import { decorateRichtext } from './editor-support-rte';
 
 async function applyChanges(event) {
   // redecorate default content and blocks on patches (in the properties rail)
@@ -25,7 +25,7 @@ async function applyChanges(event) {
 
   if (element) {
     if (element.matches('main')) {
-      const newMain = parsedUpdate.querySelector < HTMLElement > `[data-aue-resource="${resource}"]`;
+      const newMain = parsedUpdate.querySelector<HTMLElement>(`[data-aue-resource="${resource}"]`);
       if (newMain) {
         newMain.style.display = 'none';
         element.insertAdjacentElement('afterend', newMain);
@@ -46,7 +46,7 @@ async function applyChanges(event) {
       element.parentElement?.closest('.block[data-aue-resource]') || element?.closest('.block[data-aue-resource]');
     if (block) {
       const blockResource = block.getAttribute('data-aue-resource');
-      const newBlock = parsedUpdate.querySelector < HTMLElement > `[data-aue-resource="${blockResource}"]`;
+      const newBlock = parsedUpdate.querySelector<HTMLElement>(`[data-aue-resource="${blockResource}"]`);
       if (newBlock) {
         newBlock.style.display = 'none';
         block.insertAdjacentElement('afterend', newBlock);
@@ -60,10 +60,9 @@ async function applyChanges(event) {
       }
     } else {
       // sections and default content, may be multiple in the case of richtext
-      const newElements =
-        parsedUpdate.querySelectorAll <
-        HTMLElement >
-        `[data-aue-resource="${resource}"],[data-richtext-resource="${resource}"]`;
+      const newElements = parsedUpdate.querySelectorAll<HTMLElement>(
+        `[data-aue-resource="${resource}"],[data-richtext-resource="${resource}"]`
+      );
       if (newElements.length) {
         const { parentElement } = element;
         if (element.matches('.section')) {

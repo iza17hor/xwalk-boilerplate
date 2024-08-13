@@ -1,4 +1,4 @@
-import { getOrigin } from 'Helpers/sidekick/getOrigin';
+import { getOrigin } from '../../helpers/sidekick/getOrigin';
 
 /**
  * Constructs a complete URL for a given endpoint relative to the base URL.

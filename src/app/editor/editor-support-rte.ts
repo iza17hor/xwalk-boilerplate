@@ -6,7 +6,7 @@
 // this script should execute after script.js but before the the universal editor cors script
 // and any block being loaded
 
-export function decorateRichtext(container = document) {
+export function decorateRichtext(container: Document | HTMLElement | null = document) {
   function deleteInstrumentation(element) {
     delete element.dataset.richtextResource;
     delete element.dataset.richtextProp;
@@ -18,7 +18,7 @@ export function decorateRichtext(container = document) {
   while ((element = container?.querySelector('[data-richtext-prop]:not(div)'))) {
     const { richtextResource, richtextProp, richtextFilter, richtextLabel } = element.dataset;
     deleteInstrumentation(element);
-    const siblings = [];
+    const siblings: any = [];
     let sibling = element;
     while ((sibling = sibling.nextElementSibling)) {
       if (sibling.dataset.richtextResource === richtextResource && sibling.dataset.richtextProp === richtextProp) {
