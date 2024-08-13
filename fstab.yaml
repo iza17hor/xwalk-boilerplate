@@ -1,5 +1,5 @@
 mountpoints:
   /:
-    url: https://drive.google.com/drive/u/0/folders/1Eyh1YtzqPOsZHm4thi0NgK_fedQJErcT
+    url: https://author-p14256-e706089.adobeaemcloud.com/bin/franklin.delivery/stefanseifert/aem-xwalk-test/main
     type: 'markup'
     suffix: '.html'
