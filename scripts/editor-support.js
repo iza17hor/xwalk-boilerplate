@@ -1,9 +1,11 @@
-import { decorateBlock } from '../src/app/tasks/decorateBlock.ts';
-import { decorateBlocks } from '../src/app/tasks/decorateBlocks.ts';
-import { decorateButtons } from '../src/app/tasks/decorateButtons.ts';
-import { loadBlock } from '../src/app/tasks/loadBlock.ts';
-import { loadBlocks } from '../src/app/tasks/loadBlocks.ts';
-import { transformSections } from '../src/app/tasks/transformSections.ts';
+import {
+  decorateBlock,
+  decorateBlocks,
+  decorateButtons,
+  loadBlock,
+  loadBlocks,
+  transformSections,
+} from '../dist/main/main.js';
 import { decorateRichtext } from './editor-support-rte';
 
 async function applyChanges(event) {
