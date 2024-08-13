@@ -20,7 +20,8 @@ export const getUrlForEndpoint = (endpoint: string): URL | never => {
   try {
     const location = getOrigin();
     const baseUrl = new URL(window.hlx.codeBasePath, location);
-    return new URL(endpoint, baseUrl);
+    const newURL = new URL(endpoint, baseUrl);
+    return newURL;
   } catch (error) {
     throw new Error(`Failed to build Url for endpoint: ${error}`);
   }
