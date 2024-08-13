@@ -24,7 +24,7 @@ export default defineConfig(({ command, mode }) => {
         preserveEntrySignatures: 'strict',
         input: inputOptions,
         output: {
-          dir: 'script',
+          dir: 'scripts',
           entryFileNames: 'editor-support.js',
         },
         plugins: [isProd && minifyHTML()],
