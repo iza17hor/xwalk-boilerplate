@@ -1,9 +1,9 @@
-import { decorateBlock } from '../tasks/decorateBlock';
-import { decorateBlocks } from '../tasks/decorateBlocks';
-import { decorateButtons } from '../tasks/decorateButtons';
-import { loadBlock } from '../tasks/loadBlock';
-import { loadBlocks } from '../tasks/loadBlocks';
-import { transformSections } from '../tasks/transformSections';
+import { decorateBlock } from '../src/app/tasks/decorateBlock';
+import { decorateBlocks } from '../src/app/tasks/decorateBlocks';
+import { decorateButtons } from '../src/app/tasks/decorateButtons';
+import { loadBlock } from '../src/app/tasks/loadBlock';
+import { loadBlocks } from '../src/app/tasks/loadBlocks';
+import { transformSections } from '../src/app/tasks/transformSections';
 import { decorateRichtext } from './editor-support-rte';
 
 async function applyChanges(event) {
