@@ -1,3 +1,5 @@
+import './columns.scss';
+
 export default function (block: HTMLElement) {
   const cols = [...block.firstElementChild!.children];
   block.classList.add(`columns-${cols.length}-cols`);
