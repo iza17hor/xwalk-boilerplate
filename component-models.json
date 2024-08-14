@@ -201,9 +201,9 @@
     "fields": [
       {
         "component": "text",
-        "name": "style",
+        "name": "text",
         "value": "",
-        "label": "Style",
+        "label": "Text",
         "valueType": "string"
       }
     ]
