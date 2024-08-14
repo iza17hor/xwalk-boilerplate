@@ -197,7 +197,7 @@
     ]
   },
   {
-    "id": "hello-world",
+    "id": "helloworld",
     "fields": {
       "component": "richtext",
       "name": "text",

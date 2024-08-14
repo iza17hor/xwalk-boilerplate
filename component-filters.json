@@ -13,7 +13,7 @@
   },
   {
     "id": "section",
-    "components": ["text", "image", "button", "title", "hero", "cards", "columns", "fragment", "hello-world"]
+    "components": ["text", "image", "button", "title", "hero", "cards", "columns", "fragment", "helloworld"]
   },
   {
     "id": "cards",
