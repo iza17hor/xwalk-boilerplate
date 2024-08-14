@@ -1,5 +1,5 @@
 mountpoints:
   /:
-    url: https://localhost:8443/bin/franklin.delivery/diva-e-aem/xwalk-boilerplate/main
+    url: https://author-p67002-e590902.adobeaemcloud.com/bin/franklin.delivery/divaeaem/xwalk-boilerplate/main
     type: 'markup'
     suffix: '.html'
