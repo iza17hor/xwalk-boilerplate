@@ -195,5 +195,15 @@
         "label": "Reference"
       }
     ]
+  },
+  {
+    "id": "helloworld",
+    "fields": [
+      {
+        "component": "aem-content",
+        "name": "reference",
+        "label": "Reference"
+      }
+    ]
   }
 ]
