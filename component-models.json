@@ -200,9 +200,11 @@
     "id": "hello-world",
     "fields": [
       {
-        "component": "aem-content",
-        "name": "reference",
-        "label": "Reference"
+        "component": "text",
+        "name": "style",
+        "value": "",
+        "label": "Style",
+        "valueType": "string"
       }
     ]
   }
