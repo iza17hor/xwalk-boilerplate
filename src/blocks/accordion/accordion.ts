@@ -6,7 +6,7 @@ import './accordion.scss';
 const rowContentTemplate = (content: HTMLElement): TemplateResult => {
   const contentElement = document.createElement('p');
   moveInstrumentation(content, contentElement);
-  contentElement.append(...content.innerHTML);
+  contentElement.append(content.innerHTML);
   return html`${contentElement}`;
 };
 
