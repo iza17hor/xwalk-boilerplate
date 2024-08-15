@@ -47,6 +47,8 @@ export default function decorate(block) {
   //   row.replaceWith(details);
   // });
 
+  const rows = [...block.children];
+
   cleanUpBlock(block);
-  render(template([...block.children]), block);
+  render(template(rows), block);
 }
