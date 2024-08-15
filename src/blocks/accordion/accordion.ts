@@ -6,23 +6,25 @@ import './accordion.scss';
 const rowLabelTemplate = (labelContent: HTMLElement): TemplateResult => {
   const accordionEntryLabel = document.createElement('p');
   moveInstrumentation(labelContent, accordionEntryLabel);
-  accordionEntryLabel.append(...labelContent.childNodes);
+  accordionEntryLabel.append(...labelContent.innerHTML);
   return html`${accordionEntryLabel}`;
 };
 
 const rowBodyTemplate = (bodyContent: HTMLElement): TemplateResult => {
   const accordionEntryBody = document.createElement('div');
   moveInstrumentation(bodyContent, accordionEntryBody);
-  accordionEntryBody.append(...bodyContent.childNodes);
+  accordionEntryBody.append(...bodyContent.innerHTML);
   return html`${accordionEntryBody}`;
 };
 
 const rowTemplate = (row: HTMLElement): TemplateResult => {
   return html`
     <details class="accordion-item">
-      <summary class="accordion-item-label">${rowLabelTemplate(row.children[0] as HTMLElement)}</summary>
+      <summary class="accordion-item-label">
+        ${rowLabelTemplate(row.children[0].querySelector('p') as HTMLElement)}
+      </summary>
+      <div class="accordion-item-body">${rowBodyTemplate(row.children[1].querySelector('p') as HTMLElement)}</div>
     </details>
-    <div class="accordion-item-body">${rowBodyTemplate(row.children[1] as HTMLElement)}</div>
   `;
 };
 
