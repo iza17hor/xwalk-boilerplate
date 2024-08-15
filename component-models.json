@@ -209,7 +209,7 @@
     ]
   },
   {
-    "id": "accordion",
+    "id": "accordion-entry",
     "fields": [
       {
         "component": "text",
