@@ -9,7 +9,14 @@ const isProd = process.env.NODE_ENV === 'production';
 
 // @ts-ignore:next line
 export default defineConfig(({ command, mode }) => {
-  const { mainTsPath, mainScssPath, fontsScssPath, lazyStylesScssPath, sidekickLibraryStylesScssPath } = config;
+  const {
+    mainTsPath,
+    mainScssPath,
+    fontsScssPath,
+    lazyStylesScssPath,
+    sidekickLibraryStylesScssPath,
+    universalEditorStylesScssPath,
+  } = config;
   const blocksEntries = generateBlockEntries();
   generateIconNameType();
 
@@ -23,6 +30,9 @@ export default defineConfig(({ command, mode }) => {
   if (lazyStylesScssPath) inputOptions.lazyStyles = resolve(__dirname, lazyStylesScssPath);
   if (sidekickLibraryStylesScssPath) {
     inputOptions.sidekickLibraryStyles = resolve(__dirname, sidekickLibraryStylesScssPath);
+  }
+  if (universalEditorStylesScssPath) {
+    inputOptions.universalEditorStyles = resolve(__dirname, universalEditorStylesScssPath);
   }
 
   return {
