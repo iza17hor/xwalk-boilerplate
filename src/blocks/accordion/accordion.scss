@@ -47,7 +47,7 @@
   transition: transform 0.2s;
 }
 
-.accordion .accordion-item[open] .accordion-item-label::after {
+.accordion .accordion-item.open .accordion-item-label::after {
   transform: translateY(-50%) rotate(-45deg);
 }
 
@@ -56,11 +56,11 @@
   display: none;
 }
 
-.accordion .accordion-item[open] .accordion-item-body {
+.accordion .accordion-item.open .accordion-item-body {
   display: block;
 }
 
-.accordion .accordion-item[open] .accordion-item-body {
+.accordion .accordion-item.open .accordion-item-body {
   background-color: var(--background-color);
   border-top: 1px solid #dadada;
 }
