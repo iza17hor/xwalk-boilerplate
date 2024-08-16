@@ -53,6 +53,11 @@
 
 .accordion .accordion-item .accordion-item-body {
   padding: 0 16px;
+  display: none;
+}
+
+.accordion .accordion-item[open] .accordion-item-body {
+  display: block;
 }
 
 .accordion .accordion-item[open] .accordion-item-body {
