@@ -1,4 +1,5 @@
 import { html, render, TemplateResult } from 'lit';
+
 import { cleanUpBlock } from 'Utils/cleanUpBlock';
 import { moveInstrumentation } from 'Helpers/moveInstrumentation';
 import './accordion.scss';
@@ -25,8 +26,8 @@ const template = (block: HTMLElement[]): TemplateResult => {
   return html`${block.map((row) => rowTemplate(row))}`;
 };
 
-export default function decorate(block) {
-  const rows = [...block.children];
+export default function decorate(block: HTMLElement) {
+  const rows = [...block.children] as HTMLDivElement[];
 
   cleanUpBlock(block);
   render(template(rows), block);

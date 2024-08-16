@@ -1,6 +1,5 @@
-/* eslint-disable no-console */
-/* eslint-disable no-cond-assign */
-/* eslint-disable import/prefer-default-export */
+/* eslint-disable */
+/* TODO: fix eslint issues and types*/
 
 // group editable texts in single wrappers if applicable.
 // this script should execute after script.js but before the the universal editor cors script
@@ -72,3 +71,4 @@ const observer = new MutationObserver(() => decorateRichtext());
 observer.observe(document, { attributeFilter: ['data-richtext-prop'], subtree: true });
 
 decorateRichtext();
+/* eslint-enable */

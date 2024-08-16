@@ -1,6 +1,5 @@
 import { toCamelCase } from '../../utils/toCamelCase';
 import { toClassName } from '../../utils/toClassName';
-
 import { readBlockConfig } from './readBlockConfig';
 
 /*

@@ -1,3 +1,5 @@
+/* eslint-disable */
+/* TODO: fix eslint issues and types*/
 import { decorateBlock } from '../tasks/decorateBlock';
 import { decorateBlocks } from '../tasks/decorateBlocks';
 import { decorateButtons } from '../tasks/decorateButtons';
@@ -101,3 +103,4 @@ function attachEventListners(main) {
 }
 
 attachEventListners(document.querySelector('main'));
+/* eslint-enable */

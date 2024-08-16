@@ -5,7 +5,6 @@
  */
 
 import { loadBlocks } from '../../app/tasks/loadBlocks.js';
-
 import './fragment.scss';
 import { decorateButtons } from '../../app/tasks/decorateButtons.js';
 import { transformSections } from '../../app/tasks/transformSections.js';
@@ -16,7 +15,7 @@ import { decorateBlocks } from '../../app/tasks/decorateBlocks.js';
  * @param {string} path The path to the fragment
  * @returns {HTMLElement} The root element of the fragment
  */
-export async function loadFragment(path) {
+export async function loadFragment(path: string) {
   if (path && path.startsWith('/')) {
     // eslint-disable-next-line no-param-reassign
     path = path.replace(/(\.plain)?\.html/, '');
@@ -26,7 +25,7 @@ export async function loadFragment(path) {
       main.innerHTML = await resp.text();
 
       // reset base path for media to fragment base
-      const resetAttributeBase = (tag, attr) => {
+      const resetAttributeBase = (tag: string, attr: string) => {
         main.querySelectorAll(`${tag}[${attr}^="./media_"]`).forEach((elem) => {
           elem[attr] = new URL(elem.getAttribute(attr) ?? '', new URL(path, window.location.origin)).href;
         });
@@ -44,9 +43,10 @@ export async function loadFragment(path) {
   return null;
 }
 
-export default async function decorate(block) {
+export default async function decorate(block: HTMLElement) {
   const link = block.querySelector('a');
-  const path = link ? link.getAttribute('href') : block.textContent.trim();
+  const path = link ? link.getAttribute('href') : block.textContent?.trim();
+  if (!path) return;
   const fragment = await loadFragment(path);
   if (fragment) {
     const fragmentSection = fragment.querySelector(':scope .section');

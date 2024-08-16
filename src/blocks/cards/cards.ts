@@ -2,7 +2,7 @@ import { moveInstrumentation } from 'Helpers/moveInstrumentation';
 import { createOptimizedPicture } from 'Utils/createOptimizedPicture';
 import './cards.scss';
 
-export default function decorate(block) {
+export default function decorate(block: Element) {
   /* change to ul, li */
   const ul = document.createElement('ul');
   [...block.children].forEach((row) => {
@@ -24,7 +24,7 @@ export default function decorate(block) {
       width: currentImg.width,
       height: currentImg.height,
     });
-    moveInstrumentation(currentImg, optimizedPic?.querySelector('img'));
+    moveInstrumentation(currentImg, optimizedPic?.querySelector('img') as HTMLImageElement);
     if (optimizedPic) {
       currentImg.closest('picture')?.replaceWith(optimizedPic);
     }
