@@ -167,10 +167,12 @@ class HLX {
       try {
         const {
           lazyStylesScssPath,
-          sidekickLibraryStylesScssPath,
           fontsScssPath,
           lazyStylesCssPath,
+          sidekickLibraryStylesScssPath,
           sidekickLibraryStylesCssPath,
+          universalEditorStylesScssPath,
+          universalEditorStylesCssPath,
         } = config;
 
         await loadBlocks();
@@ -182,6 +184,9 @@ class HLX {
         if (lazyStylesScssPath && lazyStylesCssPath) await loadCSS(lazyStylesCssPath);
         if (sidekickLibraryStylesScssPath && sidekickLibraryStylesCssPath && isSidekickLibraryActive()) {
           await loadCSS(sidekickLibraryStylesCssPath);
+        }
+        if (universalEditorStylesScssPath && universalEditorStylesCssPath && isSidekickLibraryActive()) {
+          await loadCSS(universalEditorStylesCssPath);
         }
         if (fontsScssPath) await loadFonts();
         sampleRUM('lazy');

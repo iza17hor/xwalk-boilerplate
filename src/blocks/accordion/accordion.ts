@@ -1,8 +1,8 @@
 import { html, render, TemplateResult } from 'lit';
 
 import { cleanUpBlock } from 'Utils/cleanUpBlock';
-import { moveInstrumentation } from 'Helpers/moveInstrumentation';
 import './accordion.scss';
+import { moveInstrumentation } from 'Helpers/editor/moveInstrumentation';
 
 const rowContentTemplate = (content: HTMLElement): TemplateResult => {
   const contentElement = document.createElement('p');

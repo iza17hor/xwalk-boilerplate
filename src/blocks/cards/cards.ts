@@ -1,6 +1,6 @@
-import { moveInstrumentation } from 'Helpers/moveInstrumentation';
 import { createOptimizedPicture } from 'Utils/createOptimizedPicture';
 import './cards.scss';
+import { moveInstrumentation } from 'Helpers/editor/moveInstrumentation';
 
 export default function decorate(block: Element) {
   /* change to ul, li */
