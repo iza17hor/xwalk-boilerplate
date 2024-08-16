@@ -1,6 +1,7 @@
 import { DebuggerService } from '@kluntje/services';
 
 import { isSidekickLibraryActive } from 'Helpers/sidekick/isSidekickLibraryActive';
+import { isUniversalEditorActive } from 'Helpers/editor/isUniversalEditorActive';
 
 import { decorateTemplateAndTheme } from './tasks/decorateTemplateAndTheme';
 import { decorateButtons } from './tasks/decorateButtons';
@@ -185,7 +186,7 @@ class HLX {
         if (sidekickLibraryStylesScssPath && sidekickLibraryStylesCssPath && isSidekickLibraryActive()) {
           await loadCSS(sidekickLibraryStylesCssPath);
         }
-        if (universalEditorStylesScssPath && universalEditorStylesCssPath && isSidekickLibraryActive()) {
+        if (universalEditorStylesScssPath && universalEditorStylesCssPath && isUniversalEditorActive()) {
           await loadCSS(universalEditorStylesCssPath);
         }
         if (fontsScssPath) await loadFonts();
