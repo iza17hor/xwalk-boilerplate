@@ -18,9 +18,9 @@ const rowContentTemplate = (content: HTMLElement): TemplateResult => {
 const rowTemplate = (row: HTMLElement): TemplateResult => {
   return html`
     <div class="accordion-item">
-      <button class="accordion-item-label" @click="${() => openAccordionItem(row)}">
+      <div class="accordion-item-label" @click="${() => openAccordionItem(row)}">
         ${rowContentTemplate(row.children[0].querySelector('p') as HTMLElement)}
-      </button>
+      </div>
       <div class="accordion-item-body">${rowContentTemplate(row.children[1].querySelector('p') as HTMLElement)}</div>
     </div>
   `;
