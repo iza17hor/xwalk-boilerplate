@@ -4,6 +4,10 @@ import { cleanUpBlock } from 'Utils/cleanUpBlock';
 import './accordion.scss';
 import { moveInstrumentation } from 'Helpers/editor/moveInstrumentation';
 
+const openAccordionItem = (row: HTMLElement) => {
+  row.classList.toggle('open');
+};
+
 const rowContentTemplate = (content: HTMLElement): TemplateResult => {
   const contentElement = document.createElement('p');
   moveInstrumentation(content, contentElement);
@@ -13,12 +17,12 @@ const rowContentTemplate = (content: HTMLElement): TemplateResult => {
 
 const rowTemplate = (row: HTMLElement): TemplateResult => {
   return html`
-    <details class="accordion-item">
-      <summary class="accordion-item-label">
+    <div class="accordion-item">
+      <button class="accordion-item-label" @click="${() => openAccordionItem(row)}">
         ${rowContentTemplate(row.children[0].querySelector('p') as HTMLElement)}
-      </summary>
+      </button>
       <div class="accordion-item-body">${rowContentTemplate(row.children[1].querySelector('p') as HTMLElement)}</div>
-    </details>
+    </div>
   `;
 };
 
