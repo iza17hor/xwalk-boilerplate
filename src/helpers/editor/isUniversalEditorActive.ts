@@ -4,6 +4,9 @@
  * @returns {boolean} Whether the Universal Editor is in use.
  */
 export const isUniversalEditorActive = (): boolean => {
-  const editorApp = document.querySelector('#editor-app');
-  return editorApp !== null && window.location.href === 'about:srcdoc';
+  try {
+    return window.self !== window.top;
+  } catch (e) {
+    return true;
+  }
 };
