@@ -1,8 +1,8 @@
 import { wrapTextNodes } from './wrapTextNodes';
 
 /**
- * Decorate blocks with classes and data attributes.
- * @param {HTMLElement} main - Html main element
+ * Decorate block with classes and data attributes.
+ * @param {HTMLElement | null} block - Html block element
  */
 export function decorateBlock(block: HTMLElement | null) {
   if (block) {
