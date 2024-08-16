@@ -21,7 +21,7 @@
   transition: background-color 0.2s;
 }
 
-.accordion .accordion-item[open] .accordion-item-label {
+.accordion .accordion-item.open .accordion-item-label {
   background-color: var(--light-color);
 }
 
