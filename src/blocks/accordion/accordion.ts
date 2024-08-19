@@ -9,7 +9,14 @@ const openAccordionItem = (event: Event) => {
   if (target) target.parentElement?.classList.toggle('open');
 };
 
-const rowContentTemplate = (content: HTMLElement): TemplateResult => {
+const rowLabelTemplate = (content: HTMLElement): TemplateResult => {
+  const contentElement = document.createElement('div');
+  moveInstrumentation(content, contentElement);
+  contentElement.append(content.innerHTML);
+  return html`${contentElement}`;
+};
+
+const rowTextTemplate = (content: HTMLElement): TemplateResult => {
   const contentElement = document.createElement('p');
   moveInstrumentation(content, contentElement);
   contentElement.append(content.innerHTML);
@@ -20,9 +27,9 @@ const rowTemplate = (row: HTMLElement): TemplateResult => {
   return html`
     <div class="accordion-item">
       <div class="accordion-item-label" @click="${(event: Event) => openAccordionItem(event)}">
-        ${rowContentTemplate(row.children[0].querySelector('p') as HTMLElement)}
+        ${rowLabelTemplate(row.children[0].firstChild as HTMLElement)}
       </div>
-      <div class="accordion-item-body">${rowContentTemplate(row.children[1].querySelector('p') as HTMLElement)}</div>
+      <div class="accordion-item-body">${rowTextTemplate(row.children[1].querySelector('p') as HTMLElement)}</div>
     </div>
   `;
 };
