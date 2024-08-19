@@ -1,0 +1,2 @@
+import{g as r}from"../__chunks__/getMetadata.C2EoXxjz.js";import{loadFragment as i}from"../fragment/fragment.js";import"../__chunks__/decorateBlocks.BXNgUJ5b.js";import"../__chunks__/index.module.CR-9466T.js";import"../__chunks__/isSidekickLibraryActive.U-fJCMMj.js";async function s(o){const e=r("footer"),a=e?new URL(e,window.location.origin).pathname:"/footer",t=await i(a);o.textContent="";const n=document.createElement("div");for(;t!=null&&t.firstElementChild;)n.append(t.firstElementChild);o.append(n)}export{s as default};
+//# sourceMappingURL=footer.js.map

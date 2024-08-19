@@ -1,3 +1,5 @@
+/* eslint-disable */
+/* TODO: fix eslint issues and types*/
 async function getContentSourceUrl(owner, repo, ref) {
   const res = await fetch(`https://admin.hlx.page/sidekick/${owner}/${repo}/${ref}/env.json`);
   if (!res || !res.ok) {
@@ -87,3 +89,4 @@ export async function initSidekick() {
     );
   }
 }
+/* eslint-enable */

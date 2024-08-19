@@ -5,7 +5,7 @@ import { moveAttributes } from './moveAttributes';
  * @param {Element} from the element to copy attributes from
  * @param {Element} to the element to copy attributes to
  */
-export function moveInstrumentation(from, to) {
+export function moveInstrumentation(from: Element, to: Element) {
   moveAttributes(
     from,
     to,

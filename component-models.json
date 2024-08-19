@@ -187,12 +187,62 @@
     ]
   },
   {
+    "id": "quote",
+    "fields": [
+       {
+         "component": "richtext",
+         "name": "quote",
+         "value": "",
+         "label": "Quote",
+         "valueType": "string"
+       },
+       {
+         "component": "text",
+         "valueType": "string",
+         "name": "author",
+         "label": "Author",
+         "value": ""
+       }
+     ]
+  },  
+  {
     "id": "fragment",
     "fields": [
       {
         "component": "aem-content",
         "name": "reference",
         "label": "Reference"
+      }
+    ]
+  },
+  {
+    "id": "helloworld",
+    "fields": [
+      {
+        "component": "text",
+        "name": "text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "accordion-entry",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "value": "<Enter title>",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "content",
+        "value": "Type here...",
+        "label": "Content",
+        "valueType": "string"
       }
     ]
   }
