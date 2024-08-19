@@ -11,6 +11,8 @@ const openAccordionItem = (event: Event) => {
 
 const rowLabelTemplate = (content: HTMLElement): TemplateResult => {
   const contentElement = document.createElement('div');
+  console.log('label content: ', content);
+  console.log('label contentElement: ', contentElement);
   moveInstrumentation(content, contentElement);
   contentElement.append(content.innerHTML);
   return html`${contentElement}`;
@@ -18,6 +20,8 @@ const rowLabelTemplate = (content: HTMLElement): TemplateResult => {
 
 const rowTextTemplate = (content: HTMLElement): TemplateResult => {
   const contentElement = document.createElement('p');
+  console.log('text content: ', content);
+  console.log('text contentElement: ', contentElement);
   moveInstrumentation(content, contentElement);
   contentElement.append(content.innerHTML);
   return html`${contentElement}`;
