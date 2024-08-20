@@ -1,2 +1,2 @@
-function c(n){var o;const[e]=n.children,t=document.createElement("blockquote");t.textContent=((o=e.textContent)==null?void 0:o.trim())??"",e.replaceChildren(t)}export{c as default};
+import{j as r,x as n}from"../__chunks__/lit-element.BYUc91cE.js";import{o as c}from"../__chunks__/unsafe-html.CzzwY3gx.js";import{c as i}from"../__chunks__/cleanUpBlock.DyBWs1cd.js";const u=({quote:t,author:e})=>n`<blockquote class="quote__content">${c(t)}</blockquote><p class="quote__author">${e}</p>`;function s(t){const e=t.children[0].children[0].children[0],o=t.children[1].children[0].children[0];i(t),r(u({quote:e.innerHTML,author:o.innerText}),t)}export{s as default};
 //# sourceMappingURL=quote.js.map
