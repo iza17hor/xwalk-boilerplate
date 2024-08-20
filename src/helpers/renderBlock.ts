@@ -1,5 +1,5 @@
 import { render } from 'lit-html';
-import { RenderOptions } from 'lit';
+import { RenderOptions, TemplateResult } from 'lit';
 import { DebuggerService } from '@kluntje/services';
 
 import { cleanUpBlock } from 'Utils/cleanUpBlock';
@@ -12,7 +12,7 @@ interface MoveInstrumentationsOption {
 }
 
 interface RenderBlockOptions {
-  template: unknown;
+  template: TemplateResult;
   container: HTMLElement;
   cleanUp?: boolean;
   litRenderOptions?: RenderOptions;
@@ -24,7 +24,7 @@ interface RenderBlockOptions {
  * and moving instrumentation attributes.
  *
  * @param {RenderBlockOptions} options - The options for rendering the block.
- * @param {unknown} options.template - The lit-html template to render.
+ * @param {TemplateResult} options.template - The lit-html template to render.
  * @param {HTMLElement} options.container - The container element to render the template into.
  * @param {boolean} [options.cleanUp=true] - Whether to clean up the container before rendering. default: true.
  * @param {RenderOptions} [options.litRenderOptions] - Additional options for the lit-html render function.
@@ -86,7 +86,9 @@ interface RenderBlockOptions {
 export const renderBlock = (options: RenderBlockOptions) => {
   const { template, container, cleanUp = true, litRenderOptions, moveInstrumentationsOptions } = options;
 
-  if (cleanUp !== false) cleanUpBlock(container);
+  if (cleanUp) {
+    cleanUpBlock(container);
+  }
 
   render(template, container, litRenderOptions);
 
