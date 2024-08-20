@@ -18,11 +18,9 @@ export default function decorate(block: HTMLElement) {
   renderBlock({
     template: template({ quote: quote.innerHTML, author: author.innerText }),
     container: block,
-    options: {
-      moveInstrumentationsOptions: [
-        { from: quote, to: '.quote__content' },
-        { from: author, to: '.quote__author' },
-      ],
-    },
+    moveInstrumentationsOptions: [
+      { from: quote, to: '.quote__content' },
+      { from: author, to: '.quote__author' },
+    ],
   });
 }
