@@ -30,37 +30,23 @@ import { moveAttributes } from './moveAttributes';
  */
 export function moveInstrumentation(from: Element | string, to: Element | string): void {
   try {
-    let fromEl: Element | null;
-    let toEl: Element | null;
+    const isFromElString = typeof from === 'string';
+    const isToElString = typeof to === 'string';
+    const fromEl = isFromElString ? document.querySelector(from) : from;
+    const toEl = isToElString ? document.querySelector(to) : to;
 
-    if (typeof from === 'string') {
-      fromEl = document.querySelector(from);
-
-      if (fromEl === null) {
-        throw new Error(`Element with selector ${from} not found`);
-      }
-    } else {
-      fromEl = from;
+    if (!fromEl || !toEl) {
+      throw new Error(
+        `Invalid elements or selectors provided: from=${isFromElString ? from : from.tagName}, to=${isToElString ? to : to.tagName}`
+      );
     }
 
-    if (typeof to === 'string') {
-      toEl = document.querySelector(to);
+    const attributesToMove = [...fromEl.attributes]
+      .map(({ nodeName }) => nodeName)
+      .filter((attr) => attr.startsWith('data-aue-') || attr.startsWith('data-richtext-'));
 
-      if (toEl === null) {
-        throw new Error(`Element with selector ${to} not found`);
-      }
-    } else {
-      toEl = to;
-    }
-
-    moveAttributes(
-      fromEl,
-      toEl,
-      [...fromEl.attributes]
-        .map(({ nodeName }) => nodeName)
-        .filter((attr) => attr.startsWith('data-aue-') || attr.startsWith('data-richtext-'))
-    );
+    moveAttributes(fromEl, toEl, attributesToMove);
   } catch (error) {
-    DebuggerService.error(error);
+    DebuggerService.error('Error moving instrumentation attributes:', error);
   }
 }
