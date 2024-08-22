@@ -48,7 +48,7 @@ describe('renderBlock', () => {
     expect(cleanUpBlock).not.toHaveBeenCalled();
   });
 
-  it('should call render with the correct parameters', () => {
+  it('should call render with the correct lit RenderOptions parameters', () => {
     const litRenderOptions: RenderOptions = {
       host: container,
       renderBefore: container.firstChild,
@@ -61,7 +61,7 @@ describe('renderBlock', () => {
     expect(render).toHaveBeenCalledWith(template, container, litRenderOptions);
   });
 
-  it('should call moveInstrumentation once  with a single option', () => {
+  it('should call moveInstrumentation once with a single option', () => {
     const moveInstrumentationsOptions = { from: '#source', to: '#target' };
     const { from, to } = moveInstrumentationsOptions;
 
