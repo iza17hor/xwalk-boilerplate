@@ -2,7 +2,6 @@ import { collectBlocks } from './collectBlocks';
 import { loadBlockModules } from './loadBlockModules';
 import { loadBlockStyles } from './loadBlockStyles';
 import { config } from '../../../config';
-import { showSection } from './showSection';
 import { LcpCandidate } from '../app.types';
 
 /**
@@ -10,7 +9,7 @@ import { LcpCandidate } from '../app.types';
  * This function will load the modules and styles for the first section after the LCP candidate.
  * @returns {Promise<void>}
  */
-export async function waitForLCP() {
+export async function waitForLCP(): Promise<void> {
   const firstSection: HTMLElement | null = document.querySelector('.section');
   const { lcpBlocks } = config;
 
@@ -22,7 +21,6 @@ export async function waitForLCP() {
     });
 
     await Promise.all(blockPromises);
-    showSection(firstSection);
   }
 
   // @ts-ignore
