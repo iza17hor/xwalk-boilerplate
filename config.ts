@@ -25,5 +25,5 @@ export const config: Config = {
   sidekickLibraryStylesScssPath: './src/styles/sass/sidekick-library-styles.scss',
   sidekickLibraryStylesCssPath: './dist/sidekickLibraryStyles/sidekickLibraryStyles.css',
   editorTsPath: './src/app/editor/editor-support.ts',
-  lcpBlocks: [],
+  lcpBlocks: ['hero'],
 };
