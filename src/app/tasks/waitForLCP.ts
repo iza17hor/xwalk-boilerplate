@@ -3,6 +3,7 @@ import { loadBlockModules } from './loadBlockModules';
 import { loadBlockStyles } from './loadBlockStyles';
 import { config } from '../../../config';
 import { LcpCandidate } from '../app.types';
+import { showSection } from './showSection';
 
 /**
  * Wait for the Largest Contentful Paint (LCP) candidate to be loaded.
@@ -21,6 +22,7 @@ export async function waitForLCP(): Promise<void> {
     });
 
     await Promise.all(blockPromises);
+    showSection(firstSection);
   }
 
   // @ts-ignore
