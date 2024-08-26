@@ -1,5 +1,4 @@
-import { render } from 'lit-html';
-import { RenderOptions, TemplateResult } from 'lit';
+import { render, RenderOptions, TemplateResult } from 'lit';
 import { DebuggerService } from '@kluntje/services';
 
 import { cleanUpBlock } from 'Utils/cleanUpBlock';
