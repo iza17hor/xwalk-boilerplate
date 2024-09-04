@@ -187,6 +187,27 @@
     ]
   },
   {
+    "id": "quote",
+    "fields": [
+       {
+         "component": "richtext",
+         "name": "quote",
+         "value": "",
+         "label": "Quote",
+         "valueType": "string",
+          "required": true
+       },
+       {
+         "component": "text",
+         "valueType": "string",
+         "name": "author",
+         "label": "Author",
+         "value": "",
+         "required": true
+       }
+     ]
+  },  
+  {
     "id": "fragment",
     "fields": [
       {

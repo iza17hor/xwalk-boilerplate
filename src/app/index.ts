@@ -139,15 +139,14 @@ class HLX {
         decorateButtons(main);
         transformSections(main);
         decorateBlocks(main);
-        setTimeout(() => {
-          document.body.classList.add('show');
-          resolve();
-        }, 100);
+
+        document.body.classList.add('show');
 
         /* if desktop (proxy for fast connection) or fonts already loaded, load fonts.css */
         if (window.innerWidth >= 900 || sessionStorage.getItem('fonts-loaded')) {
           await loadFonts();
         }
+        resolve();
       } catch (error) {
         DebuggerService.error('index: could not load fonts', error);
       }
