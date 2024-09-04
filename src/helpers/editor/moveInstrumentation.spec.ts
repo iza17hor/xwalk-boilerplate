@@ -1,4 +1,4 @@
-import { moveInstrumentation } from './editor/moveInstrumentation';
+import { moveInstrumentation } from './moveInstrumentation';
 
 describe('moveInstrumentation', () => {
   const fromSelector = '.fromEl';

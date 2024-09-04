@@ -1,4 +1,4 @@
-import { moveAttributes } from './editor/moveAttributes';
+import { moveAttributes } from './moveAttributes';
 
 describe('moveAttributes', () => {
   let from: Element;

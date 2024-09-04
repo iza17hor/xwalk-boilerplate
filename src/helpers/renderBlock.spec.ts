@@ -2,6 +2,7 @@ import { html, render, RenderOptions } from 'lit';
 
 import { cleanUpBlock } from 'Utils/cleanUpBlock';
 import { renderBlock } from 'Helpers/renderBlock';
+
 import { moveInstrumentation } from './editor/moveInstrumentation';
 
 jest.mock('lit', () => ({

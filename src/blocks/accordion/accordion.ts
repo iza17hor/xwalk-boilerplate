@@ -11,8 +11,6 @@ const openAccordionItem = (event: Event) => {
 
 const rowContentTemplate = (content: HTMLElement): TemplateResult => {
   const contentElement = document.createElement('div');
-  console.log('text content: ', content);
-  console.log('text contentElement: ', contentElement);
   moveInstrumentation(content, contentElement);
   contentElement.append(content.innerHTML);
   return html`${contentElement}`;

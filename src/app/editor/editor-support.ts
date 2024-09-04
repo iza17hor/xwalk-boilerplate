@@ -1,5 +1,3 @@
-/* eslint-disable */
-/* TODO: fix eslint issues and types*/
 import { decorateBlock } from '../tasks/decorateBlock';
 import { decorateBlocks } from '../tasks/decorateBlocks';
 import { decorateButtons } from '../tasks/decorateButtons';
@@ -8,7 +6,28 @@ import { loadBlocks } from '../tasks/loadBlocks';
 import { transformSections } from '../tasks/transformSections';
 import { decorateRichtext } from './editor-support-rte';
 
-async function applyChanges(event) {
+interface EventDetail {
+  request?: {
+    target?: {
+      resource?: string;
+      container?: {
+        resource?: string;
+      };
+    };
+    to?: {
+      container?: {
+        resource?: string;
+      };
+    };
+  };
+  response?: {
+    updates: Array<{
+      content?: string;
+    }>;
+  };
+}
+
+async function applyChanges(event: CustomEvent<EventDetail>): Promise<boolean> {
   // redecorate default content and blocks on patches (in the properties rail)
   const { detail } = event;
 
@@ -18,7 +37,7 @@ async function applyChanges(event) {
     detail?.request?.to?.container?.resource; // move in sections
   if (!resource) return false;
   const updates = detail?.response?.updates;
-  if (!updates.length) return false;
+  if (!updates || updates.length === 0) return false;
   const { content } = updates[0];
   if (!content) return false;
 
@@ -27,7 +46,7 @@ async function applyChanges(event) {
 
   if (element) {
     if (element.matches('main')) {
-      const newMain = parsedUpdate.querySelector<HTMLElement>(`[data-aue-resource="${resource}"]`);
+      const newMain = parsedUpdate.querySelector(`[data-aue-resource="${resource}"]`) as HTMLElement;
       if (newMain) {
         newMain.style.display = 'none';
         element.insertAdjacentElement('afterend', newMain);
@@ -38,7 +57,7 @@ async function applyChanges(event) {
         await loadBlocks(newMain);
         element.remove();
         newMain.style.removeProperty('display');
-        // eslint-disable-next-line no-use-before-define
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
         attachEventListners(newMain);
       }
       return true;
@@ -48,7 +67,7 @@ async function applyChanges(event) {
       element.parentElement?.closest('.block[data-aue-resource]') || element?.closest('.block[data-aue-resource]');
     if (block) {
       const blockResource = block.getAttribute('data-aue-resource');
-      const newBlock = parsedUpdate.querySelector<HTMLElement>(`[data-aue-resource="${blockResource}"]`);
+      const newBlock = parsedUpdate.querySelector(`[data-aue-resource="${blockResource}"]`) as HTMLElement;
       if (newBlock) {
         newBlock.style.display = 'none';
         block.insertAdjacentElement('afterend', newBlock);
@@ -62,13 +81,13 @@ async function applyChanges(event) {
       }
     } else {
       // sections and default content, may be multiple in the case of richtext
-      const newElements = parsedUpdate.querySelectorAll<HTMLElement>(
+      const newElements = parsedUpdate.querySelectorAll(
         `[data-aue-resource="${resource}"],[data-richtext-resource="${resource}"]`
       );
       if (newElements.length) {
         const { parentElement } = element;
         if (element.matches('.section')) {
-          const [newSection] = newElements;
+          const [newSection] = newElements as NodeListOf<HTMLElement>;
           newSection.style.display = 'none';
           element.insertAdjacentElement('afterend', newSection);
           decorateButtons(newSection);
@@ -79,7 +98,7 @@ async function applyChanges(event) {
           element.remove();
           newSection.style.removeProperty('display');
         } else {
-          element.replaceWith(...newElements);
+          element.replaceWith(...Array.from(newElements));
           decorateButtons(parentElement);
           decorateRichtext(parentElement);
         }
@@ -91,10 +110,11 @@ async function applyChanges(event) {
   return false;
 }
 
-function attachEventListners(main) {
+function attachEventListners(main: HTMLElement) {
   ['aue:content-patch', 'aue:content-update', 'aue:content-add', 'aue:content-move', 'aue:content-remove'].forEach(
     (eventType) =>
-      main?.addEventListener(eventType, async (event) => {
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
+      main?.addEventListener(eventType, async (event: CustomEvent<EventDetail>) => {
         event.stopPropagation();
         const applied = await applyChanges(event);
         if (!applied) window.location.reload();
@@ -102,5 +122,4 @@ function attachEventListners(main) {
   );
 }
 
-attachEventListners(document.querySelector('main'));
-/* eslint-enable */
+attachEventListners(document.querySelector('main') as HTMLElement);
