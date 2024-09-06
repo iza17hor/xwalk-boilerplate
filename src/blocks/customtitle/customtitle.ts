@@ -53,8 +53,8 @@ export default function (block: HTMLElement) {
   const dataFetcher = getDataForField(block);
   const { textContent: titleText, dataAttributes: titleAttributes } = dataFetcher('customTitle');
   console.log('>>> 1', block);
-  console.log('>>> y p-tag', titleText);
-  console.log('>>> y p-attributes', titleAttributes);
+  console.log('>>> z p-tag', titleText);
+  console.log('>>> z p-attributes', titleAttributes);
 
   const templateTarget = document.createElement('div');
 
@@ -68,6 +68,8 @@ export default function (block: HTMLElement) {
     if (!value) return;
     h1?.setAttribute(key, value);
   });
+
+  block.innerHTML = templateTarget.innerHTML;
 
   // const textElement = block.children[0].children[0];
 
