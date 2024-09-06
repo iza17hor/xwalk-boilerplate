@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
-import { html, nothing, render, TemplateResult } from 'lit';
+import { html, literal } from 'lit/static-html.js';
+import { nothing, render, TemplateResult } from 'lit';
 
 import './customtitle.scss';
 import { cleanUpBlock } from 'Utils/cleanUpBlock';
@@ -35,17 +36,22 @@ function getDataForField(block: HTMLElement) {
 
 type Props = {
   titleText?: string | null;
+  titleType?: string | null;
   titleAttributes?: Record<string, string>;
 };
 
-const template = ({ titleText }: Props): TemplateResult | typeof nothing => {
+const template = ({ titleText, titleType }: Props): TemplateResult | typeof nothing => {
   if (!titleText) {
     return nothing;
   }
 
+  if (!titleType) {
+    titleType = 'h2';
+  }
+
   return html`
     <div style="background: red">
-      <h1>${titleText}</h1>
+      <${literal`${titleType}`}>${titleText}</${literal`${titleType}`}>
     </div>
   `;
 };
@@ -53,13 +59,14 @@ const template = ({ titleText }: Props): TemplateResult | typeof nothing => {
 export default function (block: HTMLElement) {
   const dataFetcher = getDataForField(block);
   const { textContent: titleText, dataAttributes: titleAttributes } = dataFetcher('customTitle');
+  const { textContent: titleType } = dataFetcher('titleType');
   console.log('>>> 1', block);
-  console.log('>>> a p-tag', titleText);
-  console.log('>>> a p-attributes', titleAttributes);
+  console.log('>>> d p-tag', titleText);
+  console.log('>>> d p-attributes', titleAttributes);
 
   cleanUpBlock(block);
 
-  render(template({ titleText }), block);
+  render(template({ titleText, titleType }), block);
 
   const h1 = block.querySelector('h1');
   titleAttributes?.forEach((attr) => {
