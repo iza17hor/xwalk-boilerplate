@@ -1,8 +1,5 @@
-import { collectBlocks } from './collectBlocks';
-import { loadBlockModules } from './loadBlockModules';
-import { loadBlockStyles } from './loadBlockStyles';
 import { config } from '../../../config';
-import { showSection } from './showSection';
+import { loadBlock } from './loadBlock';
 
 /**
  * Wait for the Largest Contentful Paint (LCP) candidate to be loaded.
@@ -15,21 +12,21 @@ export async function waitForLCP(): Promise<Event | void> {
   const { lcpBlocks } = config;
 
   if (firstSection) {
-    const blocks = collectBlocks(firstSection);
+    const blocks = [...firstSection.querySelectorAll<HTMLDivElement>('div.block')];
     const blockPromises: Promise<void>[] = [];
 
     for (const block of blocks) {
-      if (lcpBlocks?.includes(block.name)) {
-        blockPromises.push(loadBlockModules(block), loadBlockStyles(block));
+      if (lcpBlocks?.includes(block.dataset.blockName as string)) {
+        blockPromises.push(loadBlock(block));
       }
       if (blockPromises.length < 1 && blocks.length > 0) {
         const firstBlock = blocks[0];
-        blockPromises.push(loadBlockModules(firstBlock), loadBlockStyles(firstBlock));
+        blockPromises.push(loadBlock(firstBlock));
       }
     }
 
     await Promise.all(blockPromises);
-    showSection(firstSection);
+    firstSection.style.removeProperty('display');
   }
 
   // @ts-ignore

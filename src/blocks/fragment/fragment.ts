@@ -4,10 +4,10 @@
  * https://www.aem.live/developer/block-collection/fragment
  */
 
-import { loadBlocks } from '../../app/tasks/loadBlocks.js';
+import { loadSections } from '../../app/tasks/loadSections.js';
 import './fragment.scss';
 import { decorateButtons } from '../../app/tasks/decorateButtons.js';
-import { transformSections } from '../../app/tasks/transformSections.js';
+import { decorateSections } from '../../app/tasks/decorateSections.js';
 import { decorateBlocks } from '../../app/tasks/decorateBlocks.js';
 
 /**
@@ -34,9 +34,9 @@ export async function loadFragment(path: string) {
       resetAttributeBase('source', 'srcset');
 
       decorateButtons(main);
-      transformSections(main);
+      decorateSections(main);
       decorateBlocks(main);
-      await loadBlocks(main);
+      await loadSections(main);
       return main;
     }
   }

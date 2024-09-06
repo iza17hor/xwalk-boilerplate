@@ -1,5 +1,4 @@
-import { addClasses } from '../../utils/addClasses';
-import { getMetadata } from '../../utils/getMetadata';
+import { decorateTemplateAndTheme as aemDecorateTemplateAndTheme } from '../../../libs/aem';
 
 /**
  * Decorates the template and theme by adding classes to the body.
@@ -13,8 +12,5 @@ import { getMetadata } from '../../utils/getMetadata';
  * <body class="template-name theme-name">
  */
 export function decorateTemplateAndTheme() {
-  const template = getMetadata('template');
-  if (template) addClasses(document.body, template);
-  const theme = getMetadata('theme');
-  if (theme) addClasses(document.body, theme);
+  aemDecorateTemplateAndTheme();
 }

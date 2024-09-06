@@ -10,8 +10,8 @@ import { loadFonts } from './tasks/loadFonts';
 import { initSampleRUM } from './tasks/initSampleRUM';
 import { loadCSS } from './tasks/loadCSS';
 import { config } from '../../config';
-import { loadBlocks } from './tasks/loadBlocks';
-import { transformSections } from './tasks/transformSections';
+import { loadSections } from './tasks/loadSections';
+import { decorateSections } from './tasks/decorateSections';
 import { decorateBlocks } from './tasks/decorateBlocks';
 import { sampleRUM } from './tasks/sampleRUM';
 import { waitForLCP } from './tasks/waitForLCP';
@@ -137,7 +137,7 @@ class HLX {
       try {
         const main = document.querySelector('main') as HTMLElement;
         decorateButtons(main);
-        transformSections(main);
+        decorateSections(main);
         decorateBlocks(main);
 
         document.body.classList.add('show');
@@ -175,7 +175,8 @@ class HLX {
           universalEditorStylesCssPath,
         } = config;
 
-        await loadBlocks();
+        const main = document.querySelector('main') as HTMLElement;
+        await loadSections(main);
 
         const { hash } = window.location;
         const element = hash ? document.getElementById(hash.substring(1)) : false;
@@ -190,7 +191,6 @@ class HLX {
         }
         if (fontsScssPath) await loadFonts();
         sampleRUM('lazy');
-        const main = document.querySelector('main') as HTMLElement;
         // @ts-ignore
         sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
         // @ts-ignore

@@ -2,8 +2,8 @@ import { decorateBlock } from '../tasks/decorateBlock';
 import { decorateBlocks } from '../tasks/decorateBlocks';
 import { decorateButtons } from '../tasks/decorateButtons';
 import { loadBlock } from '../tasks/loadBlock';
-import { loadBlocks } from '../tasks/loadBlocks';
-import { transformSections } from '../tasks/transformSections';
+import { loadSections } from '../tasks/loadSections';
+import { decorateSections } from '../tasks/decorateSections';
 import { decorateRichtext } from './editor-support-rte';
 
 interface EventDetail {
@@ -51,10 +51,10 @@ async function applyChanges(event: CustomEvent<EventDetail>): Promise<boolean> {
         newMain.style.display = 'none';
         element.insertAdjacentElement('afterend', newMain);
         decorateButtons(newMain);
-        transformSections(newMain);
+        decorateSections(newMain);
         decorateBlocks(newMain);
         decorateRichtext(newMain);
-        await loadBlocks(newMain);
+        await loadSections(newMain);
         element.remove();
         newMain.style.removeProperty('display');
         // eslint-disable-next-line @typescript-eslint/no-use-before-define
@@ -92,9 +92,9 @@ async function applyChanges(event: CustomEvent<EventDetail>): Promise<boolean> {
           element.insertAdjacentElement('afterend', newSection);
           decorateButtons(newSection);
           decorateRichtext(newSection);
-          transformSections(parentElement);
+          decorateSections(parentElement);
           decorateBlocks(parentElement);
-          await loadBlocks(parentElement);
+          await loadSections(parentElement);
           element.remove();
           newSection.style.removeProperty('display');
         } else {
