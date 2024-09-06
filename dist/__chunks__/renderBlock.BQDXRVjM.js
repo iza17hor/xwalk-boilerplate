@@ -1,0 +1,2 @@
+import{j as c}from"./lit-element.BYUc91cE.js";import{m as p}from"./index.module.DQI0LCqS.js";import{c as f}from"./cleanUpBlock.DyBWs1cd.js";import{m as l}from"./moveInstrumentation.CJwB2sIU.js";const h=t=>{const{template:n,container:o,cleanUp:e=!0,litRenderOptions:i,moveInstrumentationsOptions:r}=t;e&&f(o),c(n,o,i),r&&(Array.isArray(r)?r:[r]).forEach(({from:m,to:s})=>{try{l(m,s)}catch(a){p.error("Error moving instrumentation attributes:",a)}})};export{h as r};
+//# sourceMappingURL=renderBlock.BQDXRVjM.js.map
