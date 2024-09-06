@@ -21,7 +21,7 @@ export default function (block: HTMLElement) {
     template: template(text),
     container: block,
     moveInstrumentationsOptions: {
-      from: textElement,
+      from: textElement.querySelector('p') as Element,
       to: block.querySelector('h1') as Element,
     },
   });
