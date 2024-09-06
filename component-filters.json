@@ -1,15 +1,9 @@
 [
   {
     "id": "main",
-    "components": ["section"]
-  },
-  {
-    "id": "columns",
-    "components": []
-  },
-  {
-    "id": "column",
-    "components": ["text", "image", "button", "title"]
+    "components": [
+      "section"
+    ]
   },
   {
     "id": "section",
@@ -21,18 +15,28 @@
       "hero",
       "cards",
       "columns",
-      "fragment",
-      "helloworld",
-      "accordion",
-      "quote"
+      "fragment"
     ]
   },
   {
     "id": "cards",
-    "components": ["card"]
+    "components": [
+      "card"
+    ]
   },
   {
-    "id": "accordion",
-    "components": ["accordion-entry"]
+    "id": "columns",
+    "components": [
+      "column"
+    ]
+  },
+  {
+    "id": "column",
+    "components": [
+      "text",
+      "image",
+      "button",
+      "title"
+    ]
   }
 ]
