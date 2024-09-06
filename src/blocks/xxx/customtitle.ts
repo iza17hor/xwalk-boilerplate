@@ -1,6 +1,6 @@
 import { html, TemplateResult } from 'lit';
 
-import './customTitle.scss';
+import './customtitle.scss';
 import { renderBlock } from 'Helpers/renderBlock';
 
 const template = (text: string): TemplateResult => {
