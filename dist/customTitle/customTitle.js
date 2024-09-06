@@ -1,2 +1,0 @@
-import{x as e}from"../__chunks__/lit-element.BYUc91cE.js";import{r as n}from"../__chunks__/renderBlock.BQDXRVjM.js";import"../__chunks__/index.module.DQI0LCqS.js";import"../__chunks__/cleanUpBlock.DyBWs1cd.js";import"../__chunks__/moveInstrumentation.CJwB2sIU.js";const r=t=>e`<h1>${t}</h1>`;function s(t){const o=t.children[0].children[0].textContent||"";console.log(">>> textcontent",o),console.log(">>> customTitle block",t),n({template:r(o),container:t})}export{s as default};
-//# sourceMappingURL=customtitle.js.map
