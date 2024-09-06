@@ -5,7 +5,7 @@
   },
   {
     "id": "section",
-    "components": ["text", "image", "button", "title", "hero", "ingoTitle", "cards", "columns", "fragment"]
+    "components": ["text", "image", "button", "title", "hero", "herooo", "cards", "columns", "fragment"]
   },
   {
     "id": "cards",
