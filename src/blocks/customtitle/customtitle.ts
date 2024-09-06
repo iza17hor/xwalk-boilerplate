@@ -12,9 +12,9 @@ export default function (block: HTMLElement) {
   const paragraphElement = block.children[0].children[0].children[0];
   const pAttributes = paragraphElement.attributes;
 
-  console.log('>>>', block);
-  console.log('>>> p-tag', paragraphElement);
-  console.log('>>> p-attributes', pAttributes);
+  console.log('>>> 1', block);
+  console.log('>>> 2 p-tag', paragraphElement);
+  console.log('>>> 3 p-attributes', pAttributes);
 
   // const textElement = block.children[0].children[0];
 
