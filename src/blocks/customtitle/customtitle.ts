@@ -8,13 +8,24 @@ import './customtitle.scss';
 //   return html`<h1>${text}</h1>`;
 // };
 
-export default function (block: HTMLElement) {
-  const paragraphElement = block.children[0].children[0].children[0];
-  const pAttributes = paragraphElement.attributes;
+function getDataForField(block: HTMLElement) {
+  return (propName: string) => {
+    const field = block.querySelector(`[data-aue-prop="${propName}"]`);
 
+    return {
+      textContent: field?.textContent,
+      innerHTML: field?.innerHTML,
+      dataAttributes: field?.attributes,
+    };
+  };
+}
+
+export default function (block: HTMLElement) {
+  const dataFetcher = getDataForField(block);
+  const title = dataFetcher('customTitle');
   console.log('>>> 1', block);
-  console.log('>>> 2 p-tag', paragraphElement);
-  console.log('>>> 3 p-attributes', pAttributes);
+  console.log('>>> n p-tag', title.textContent);
+  console.log('>>> n p-attributes', title.dataAttributes);
 
   // const textElement = block.children[0].children[0];
 

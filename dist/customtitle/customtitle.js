@@ -1,2 +1,2 @@
-function l(t){const e=t.children[0].children[0].children[0],o=e.attributes;console.log(">>> 1",t),console.log(">>> 2 p-tag",e),console.log(">>> 3 p-attributes",o)}export{l as default};
+function o(e){return n=>{const t=e.querySelector(`[data-aue-prop="${n}"]`);return{textContent:t==null?void 0:t.textContent,innerHTML:t==null?void 0:t.innerHTML,dataAttributes:t==null?void 0:t.attributes}}}function a(e){const t=o(e)("customTitle");console.log(">>> 1",e),console.log(">>> n p-tag",t.textContent),console.log(">>> n p-attributes",t.dataAttributes)}export{a as default};
 //# sourceMappingURL=customtitle.js.map
