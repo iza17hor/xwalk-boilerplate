@@ -27,8 +27,8 @@ function getDataForField(block: HTMLElement) {
     const field = block.querySelector(`[data-aue-prop="${propName}"]`);
 
     return {
-      textContent: field?.textContent,
-      innerHTML: field?.innerHTML,
+      textContent: field?.textContent || undefined,
+      innerHTML: field?.innerHTML || undefined,
       dataAttributes: field ? createAttributeMap(field) : null,
     };
   };
@@ -36,22 +36,29 @@ function getDataForField(block: HTMLElement) {
 
 type Props = {
   titleText?: string | null;
-  titleType?: string | null;
+  titleType?: string;
   titleAttributes?: Record<string, string>;
 };
 
-const template = ({ titleText, titleType }: Props): TemplateResult | typeof nothing => {
+const template = ({ titleText, titleType = 'h2' }: Props): TemplateResult | typeof nothing => {
   if (!titleText) {
     return nothing;
   }
 
-  if (!titleType) {
-    titleType = 'h2';
-  }
+  const tagMap = {
+    h1: literal`h1`,
+    h2: literal`h2`,
+    h3: literal`h3`,
+    h4: literal`h4`,
+    h5: literal`h5`,
+    h6: literal`h6`,
+  };
+
+  const tag = tagMap[titleType] as string;
 
   return html`
     <div style="background: red">
-      <${literal`${titleType}`}>${titleText}</${literal`${titleType}`}>
+      <${tag}>${titleText}</${tag}>
     </div>
   `;
 };
@@ -59,10 +66,10 @@ const template = ({ titleText, titleType }: Props): TemplateResult | typeof noth
 export default function (block: HTMLElement) {
   const dataFetcher = getDataForField(block);
   const { textContent: titleText, dataAttributes: titleAttributes } = dataFetcher('customTitle');
-  const { textContent: titleType } = dataFetcher('titleType');
+  const { textContent: titleType } = dataFetcher('titleType') || 'h2';
   console.log('>>> 1', block);
-  console.log('>>> d p-tag', titleText);
-  console.log('>>> d p-attributes', titleAttributes);
+  console.log('>>> aa p-tag', titleText);
+  console.log('>>> aa p-attributes', titleAttributes);
 
   cleanUpBlock(block);
 
