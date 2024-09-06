@@ -2,6 +2,7 @@
 import { html, nothing, render, TemplateResult } from 'lit';
 
 import './customtitle.scss';
+import { cleanUpBlock } from 'Utils/cleanUpBlock';
 // import { renderBlock } from 'Helpers/renderBlock';
 
 // const template = (text: string): TemplateResult => {
@@ -53,10 +54,12 @@ export default function (block: HTMLElement) {
   const dataFetcher = getDataForField(block);
   const { textContent: titleText, dataAttributes: titleAttributes } = dataFetcher('customTitle');
   console.log('>>> 1', block);
-  console.log('>>> z p-tag', titleText);
-  console.log('>>> z p-attributes', titleAttributes);
+  console.log('>>> t p-tag', titleText);
+  console.log('>>> t p-attributes', titleAttributes);
 
   const templateTarget = document.createElement('div');
+
+  cleanUpBlock(block);
 
   render(template({ titleText }), templateTarget);
 
