@@ -48,6 +48,7 @@ describe('getUrlForEndpoint', () => {
         RUM_MASK_URL: '',
         codeBasePath,
         lighthouse: false,
+        RUM_MANUAL_ENHANCE: false,
       };
 
       const { href } = getUrlForEndpoint(endpoint);
