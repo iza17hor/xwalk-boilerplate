@@ -54,8 +54,8 @@ export default function (block: HTMLElement) {
   const dataFetcher = getDataForField(block);
   const { textContent: titleText, dataAttributes: titleAttributes } = dataFetcher('customTitle');
   console.log('>>> 1', block);
-  console.log('>>> e p-tag', titleText);
-  console.log('>>> e p-attributes', titleAttributes);
+  console.log('>>> a p-tag', titleText);
+  console.log('>>> a p-attributes', titleAttributes);
 
   cleanUpBlock(block);
 
