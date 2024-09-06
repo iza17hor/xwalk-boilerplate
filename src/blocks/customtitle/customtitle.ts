@@ -37,7 +37,10 @@ export default function (block: HTMLElement) {
     : 'h2';
 
   cleanUpBlock(block);
-  render(template({ titleText, titleType: normalizedTitleType }), block, {});
+  render(template({ titleText, titleType: normalizedTitleType }), block);
+
+  // eslint-disable-next-line no-console
+  console.log('>>> rendered a');
 
   const headline = block.querySelector('[data-js-title-type]');
   titleAttributes?.forEach((attr) => {
