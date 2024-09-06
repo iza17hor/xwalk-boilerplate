@@ -30,8 +30,8 @@ export default function (block: HTMLElement) {
   const dataFetcher = getDataForField(block);
   const title = dataFetcher('customTitle');
   console.log('>>> 1', block);
-  console.log('>>> n p-tag', title.textContent);
-  console.log('>>> n p-attributes', title.dataAttributes);
+  console.log('>>> x p-tag', title.textContent);
+  console.log('>>> x p-attributes', title.dataAttributes);
 
   // const textElement = block.children[0].children[0];
 
