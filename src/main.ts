@@ -8,6 +8,7 @@ declare global {
     hlx: {
       RUM_MASK_URL: string;
       codeBasePath: string;
+      RUM_MANUAL_ENHANCE: boolean;
       lighthouse: boolean;
     };
   }
