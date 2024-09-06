@@ -164,8 +164,8 @@
     "fields": [
       {
         "component": "text",
-        "name": "title",
-        "label": "Title"
+        "name": "customTitle",
+        "label": "Custom Title"
       },
       {
         "component": "select",
