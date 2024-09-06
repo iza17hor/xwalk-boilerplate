@@ -1,1 +1,0 @@
-import './herooo.scss';
