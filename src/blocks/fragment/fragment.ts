@@ -4,7 +4,7 @@
  * https://www.aem.live/developer/block-collection/fragment
  */
 
-import { loadBlocks } from '../../app/tasks/loadBlocks.js';
+import { loadSections } from '../../app/tasks/loadSections.js';
 import './fragment.scss';
 import { decorateButtons } from '../../app/tasks/decorateButtons.js';
 import { transformSections } from '../../app/tasks/transformSections.js';
@@ -36,7 +36,7 @@ export async function loadFragment(path: string) {
       decorateButtons(main);
       transformSections(main);
       decorateBlocks(main);
-      await loadBlocks(main);
+      await loadSections(main);
       return main;
     }
   }

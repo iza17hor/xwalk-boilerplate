@@ -9,7 +9,7 @@ import { loadFonts } from './tasks/loadFonts';
 import { initSampleRUM } from './tasks/initSampleRUM';
 import { loadCSS } from './tasks/loadCSS';
 import { config } from '../../config';
-import { loadBlocks } from './tasks/loadBlocks';
+import { loadSections } from './tasks/loadSections';
 import { transformSections } from './tasks/transformSections';
 import { decorateBlocks } from './tasks/decorateBlocks';
 import { sampleRUM } from './tasks/sampleRUM';
@@ -172,7 +172,7 @@ class HLX {
           sidekickLibraryStylesCssPath,
         } = config;
 
-        await loadBlocks();
+        await loadSections();
 
         const { hash } = window.location;
         const element = hash ? document.getElementById(hash.substring(1)) : false;
