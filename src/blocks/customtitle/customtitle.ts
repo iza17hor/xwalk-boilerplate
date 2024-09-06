@@ -8,10 +8,16 @@ import './customtitle.scss';
 //   return html`<h1>${text}</h1>`;
 // };
 
-function createAttributeMap(attributes: NamedNodeMap) {
+function createAttributeMap(field: Element) {
+  const attributes = field.attributes;
   return [...attributes]
     .map(({ nodeName }) => nodeName)
-    .filter((attr) => attr.startsWith('data-aue-') || attr.startsWith('data-richtext-'));
+    .filter((attr) => attr.startsWith('data-aue-') || attr.startsWith('data-richtext-'))
+    .map((attribute) => {
+      return {
+        [attribute]: field.getAttribute(attribute),
+      };
+    });
 }
 
 function getDataForField(block: HTMLElement) {
@@ -21,7 +27,7 @@ function getDataForField(block: HTMLElement) {
     return {
       textContent: field?.textContent,
       innerHTML: field?.innerHTML,
-      dataAttributes: field?.attributes ? createAttributeMap(field?.attributes) : null,
+      dataAttributes: field ? createAttributeMap(field) : null,
     };
   };
 }
@@ -30,8 +36,8 @@ export default function (block: HTMLElement) {
   const dataFetcher = getDataForField(block);
   const title = dataFetcher('customTitle');
   console.log('>>> 1', block);
-  console.log('>>> x p-tag', title.textContent);
-  console.log('>>> x p-attributes', title.dataAttributes);
+  console.log('>>> y p-tag', title.textContent);
+  console.log('>>> y p-attributes', title.dataAttributes);
 
   // const textElement = block.children[0].children[0];
 
