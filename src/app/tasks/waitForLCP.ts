@@ -1,49 +1,40 @@
-import { collectBlocks } from './collectBlocks';
+import { collectBlocksFromSection } from './collectBlocksFromSection';
 import { loadBlockModules } from './loadBlockModules';
 import { loadBlockStyles } from './loadBlockStyles';
 import { config } from '../../../config';
 import { showSection } from './showSection';
+import { LcpCandidate } from '../app.types';
 
 /**
  * Wait for the Largest Contentful Paint (LCP) candidate to be loaded.
  * This function will load the modules and styles for the first section after the LCP candidate.
- * @returns {Promise<Event | void>}
+ * @returns {Promise<void>}
  */
-export async function waitForLCP(): Promise<Event | void> {
-  const firstSection: HTMLElement | null = document.querySelector('.section');
-  const lcpCandidate = document.querySelector<HTMLImageElement>('main img');
+export async function waitForLCP() {
+  const firstSection: HTMLDivElement | null = document.querySelector('.section');
   const { lcpBlocks } = config;
 
   if (firstSection) {
-    const blocks = collectBlocks(firstSection);
-    const blockPromises: Promise<void>[] = [];
-
-    for (const block of blocks) {
-      if (lcpBlocks?.includes(block.name)) {
-        blockPromises.push(loadBlockModules(block), loadBlockStyles(block));
-      }
-      if (blockPromises.length < 1 && blocks.length > 0) {
-        const firstBlock = blocks[0];
-        blockPromises.push(loadBlockModules(firstBlock), loadBlockStyles(firstBlock));
-      }
-    }
+    const blocks = collectBlocksFromSection(firstSection);
+    const blockPromises = blocks.map(async (block) => {
+      const hasLCPBlock = lcpBlocks?.includes(block.name);
+      if (hasLCPBlock) await Promise.all([loadBlockModules(block.element), loadBlockStyles(block.element)]);
+    });
 
     await Promise.all(blockPromises);
     showSection(firstSection);
   }
 
   // @ts-ignore
-  if (document.body.style.display === 'none') {
-    // @ts-ignore
-    document.body.style.display = null;
-  }
+  document.body.style.display = null;
+  const lcpCandidate = document.querySelector<LcpCandidate>('main img');
 
-  await new Promise<Event | void>((resolve) => {
+  await new Promise<void>((resolve) => {
     if (lcpCandidate && !lcpCandidate.complete) {
       lcpCandidate.setAttribute('loading', 'eager');
       lcpCandidate.setAttribute('fetchpriority', 'high');
-      lcpCandidate.addEventListener('load', (ev: Event) => resolve(ev));
-      lcpCandidate.addEventListener('error', (ev: Event) => resolve(ev));
+      lcpCandidate.addEventListener('load', () => resolve());
+      lcpCandidate.addEventListener('error', () => resolve());
     } else {
       resolve();
     }

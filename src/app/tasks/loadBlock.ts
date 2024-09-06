@@ -1,28 +1,11 @@
-import { BlockMapping } from '../app.types';
-import { collectBlocks } from './collectBlocks';
 import { loadBlockModules } from './loadBlockModules';
 import { loadBlockStyles } from './loadBlockStyles';
-import { showSection } from './showSection';
 
 /**
- * Load the block modules and styles for a section and show the section.
- * @param {HTMLElement} section - The section to load the block modules and styles for.
+ * Load the block modules and styles of a block
+ * @param {HTMLElement} block - The block to be loaded.
  * @returns {Promise<void>}
  */
-export async function loadBlock(section: HTMLElement): Promise<void> {
-  const sectionsBlocks: BlockMapping[] = collectBlocks(section);
-
-  if (!sectionsBlocks.length) {
-    showSection(section);
-    return;
-  }
-
-  const blockPromises: Promise<[void, void]>[] = [];
-
-  for (const block of sectionsBlocks) {
-    blockPromises.push(Promise.all([loadBlockModules(block), loadBlockStyles(block)]));
-  }
-
-  await Promise.all(blockPromises);
-  showSection(section);
+export async function loadBlock(block: HTMLDivElement): Promise<void> {
+  await Promise.all([loadBlockModules(block), loadBlockStyles(block)]);
 }

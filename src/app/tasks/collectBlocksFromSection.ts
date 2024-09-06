@@ -1,4 +1,5 @@
 import { BlockMapping } from '../app.types';
+import { getBlockMapping } from './getBlockMapping';
 
 /**
  * Collect all blocks in a section.
@@ -9,15 +10,12 @@ import { BlockMapping } from '../app.types';
  * console.log(blocks);
  * Output: [{ name: 'block1', element: HTMLElement }, { name: 'block2', element: HTMLElement }]
  */
-export function collectBlocks(section: HTMLElement): BlockMapping[] {
+export function collectBlocksFromSection(section: HTMLElement): BlockMapping[] {
   const blockMap: BlockMapping[] = [];
   const blocksElements = section.querySelectorAll<HTMLDivElement>('[data-block-name]');
 
   blocksElements.forEach((block: HTMLDivElement) => {
-    blockMap.push({
-      name: block.dataset.blockName as string,
-      element: block,
-    });
+    blockMap.push(getBlockMapping(block));
   });
 
   return blockMap;

@@ -6,14 +6,14 @@ import { decorateTemplateAndTheme } from './tasks/decorateTemplateAndTheme';
 import { decorateButtons } from './tasks/decorateButtons';
 import { setDocLanguage } from './tasks/setDocLanguage';
 import { loadFonts } from './tasks/loadFonts';
-import { initSampleRUM } from './tasks/initSampleRUM';
 import { loadCSS } from './tasks/loadCSS';
 import { config } from '../../config';
-import { loadBlocks } from './tasks/loadBlocks';
 import { transformSections } from './tasks/transformSections';
 import { decorateBlocks } from './tasks/decorateBlocks';
 import { sampleRUM } from './tasks/sampleRUM';
 import { waitForLCP } from './tasks/waitForLCP';
+import { loadSections } from './tasks/loadSections';
+import setupHlxObj from './tasks/setupHlxObj';
 
 class HLX {
   private beforeEagerCallbacks: Array<() => Promise<void>> = [];
@@ -121,7 +121,9 @@ class HLX {
 
   private async beforeLoadEager(): Promise<void> {
     const beforeLoadEagerTask: Promise<void> = new Promise((resolve) => {
-      initSampleRUM();
+      setupHlxObj();
+      // @ts-ignore
+      sampleRUM();
       decorateTemplateAndTheme();
       setDocLanguage();
       resolve();
@@ -138,14 +140,17 @@ class HLX {
         decorateButtons(main);
         transformSections(main);
         decorateBlocks(main);
-
-        document.body.classList.add('show');
+        setTimeout(() => {
+          document.body.classList.add('show');
+          resolve();
+        }, 100);
+        // @ts-ignore
+        sampleRUM.enhance();
 
         /* if desktop (proxy for fast connection) or fonts already loaded, load fonts.css */
         if (window.innerWidth >= 900 || sessionStorage.getItem('fonts-loaded')) {
           await loadFonts();
         }
-        resolve();
       } catch (error) {
         DebuggerService.error('index: could not load fonts', error);
       }
@@ -172,7 +177,8 @@ class HLX {
           sidekickLibraryStylesCssPath,
         } = config;
 
-        await loadBlocks();
+        const main = document.querySelector('main') as HTMLElement;
+        await loadSections(main);
 
         const { hash } = window.location;
         const element = hash ? document.getElementById(hash.substring(1)) : false;
@@ -183,12 +189,6 @@ class HLX {
           await loadCSS(sidekickLibraryStylesCssPath);
         }
         if (fontsScssPath) await loadFonts();
-        sampleRUM('lazy');
-        const main = document.querySelector('main') as HTMLElement;
-        // @ts-ignore
-        sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
-        // @ts-ignore
-        sampleRUM.observe(main.querySelectorAll('picture > img'));
       } catch (error) {
         DebuggerService.error('LoadLazyTask: ', error);
       }

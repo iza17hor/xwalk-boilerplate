@@ -4,7 +4,7 @@ import { decorateBlock } from '../tasks/decorateBlock';
 import { decorateBlocks } from '../tasks/decorateBlocks';
 import { decorateButtons } from '../tasks/decorateButtons';
 import { loadBlock } from '../tasks/loadBlock';
-import { loadBlocks } from '../tasks/loadBlocks';
+import { loadSections } from '../tasks/loadSections';
 import { transformSections } from '../tasks/transformSections';
 import { decorateRichtext } from './editor-support-rte';
 
@@ -35,7 +35,7 @@ async function applyChanges(event) {
         transformSections(newMain);
         decorateBlocks(newMain);
         decorateRichtext(newMain);
-        await loadBlocks(newMain);
+        await loadSections(newMain);
         element.remove();
         newMain.style.removeProperty('display');
         // eslint-disable-next-line no-use-before-define
@@ -48,7 +48,7 @@ async function applyChanges(event) {
       element.parentElement?.closest('.block[data-aue-resource]') || element?.closest('.block[data-aue-resource]');
     if (block) {
       const blockResource = block.getAttribute('data-aue-resource');
-      const newBlock = parsedUpdate.querySelector<HTMLElement>(`[data-aue-resource="${blockResource}"]`);
+      const newBlock = parsedUpdate.querySelector<HTMLDivElement>(`[data-aue-resource="${blockResource}"]`);
       if (newBlock) {
         newBlock.style.display = 'none';
         block.insertAdjacentElement('afterend', newBlock);
@@ -75,7 +75,7 @@ async function applyChanges(event) {
           decorateRichtext(newSection);
           transformSections(parentElement);
           decorateBlocks(parentElement);
-          await loadBlocks(parentElement);
+          await loadSections(parentElement);
           element.remove();
           newSection.style.removeProperty('display');
         } else {
