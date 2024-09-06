@@ -9,6 +9,8 @@ const template = (text: string): TemplateResult => {
 
 export default function (block: HTMLElement) {
   const textElement = block.children[0].children[0];
+  // eslint-disable-next-line no-console
+  console.log('>>> textelement', textElement, 'attrs', textElement.attributes);
   const text = textElement.textContent || '';
   // eslint-disable-next-line no-console
   console.log('>>> textcontent', text);
