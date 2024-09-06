@@ -54,16 +54,13 @@ export default function (block: HTMLElement) {
   const dataFetcher = getDataForField(block);
   const { textContent: titleText, dataAttributes: titleAttributes } = dataFetcher('customTitle');
   console.log('>>> 1', block);
-  console.log('>>> t p-tag', titleText);
-  console.log('>>> t p-attributes', titleAttributes);
-
-  const templateTarget = document.createElement('div');
+  console.log('>>> f p-tag', titleText);
+  console.log('>>> f p-attributes', titleAttributes);
 
   cleanUpBlock(block);
+  render(template({ titleText }), block);
 
-  render(template({ titleText }), templateTarget);
-
-  const h1 = templateTarget.querySelector('h1');
+  const h1 = block.querySelector('h1');
   titleAttributes?.forEach((attr) => {
     const key = Object.keys(attr)[0];
     const value = attr[key];
@@ -71,8 +68,6 @@ export default function (block: HTMLElement) {
     if (!value) return;
     h1?.setAttribute(key, value);
   });
-
-  block.innerHTML = templateTarget.innerHTML;
 
   // const textElement = block.children[0].children[0];
 
