@@ -8,7 +8,8 @@ const template = (text: string): TemplateResult => {
 };
 
 export default function (block: HTMLElement) {
-  const text = block.children[0].children[0].textContent || '';
+  const textElement = block.children[0].children[0];
+  const text = textElement.textContent || '';
   // eslint-disable-next-line no-console
   console.log('>>> textcontent', text);
   // eslint-disable-next-line no-console
@@ -17,5 +18,9 @@ export default function (block: HTMLElement) {
   renderBlock({
     template: template(text),
     container: block,
+    moveInstrumentationsOptions: {
+      from: textElement,
+      to: 'h1',
+    },
   });
 }
