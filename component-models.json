@@ -16,11 +16,11 @@
     ]
   },
   {
-    "id": "title",
+    "id": "customTitle",
     "fields": [
       {
         "component": "text",
-        "name": "title",
+        "name": "customTitle",
         "label": "Title"
       },
       {
