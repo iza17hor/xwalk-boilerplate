@@ -20,7 +20,7 @@ export default function (block: HTMLElement) {
     container: block,
     moveInstrumentationsOptions: {
       from: textElement,
-      to: 'h1',
+      to: block.querySelector('h1') as Element,
     },
   });
 }

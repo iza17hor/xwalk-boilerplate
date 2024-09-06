@@ -1,4 +1,4 @@
-import { DebuggerService } from '@kluntje/services';
+// import { DebuggerService } from '@kluntje/services';
 
 import { moveAttributes } from './moveAttributes';
 
@@ -28,25 +28,12 @@ import { moveAttributes } from './moveAttributes';
  * // <blockquote class="quote">Quote</blockquote>
  * // <div class="quote__content" data-aue-attribute="value"></div>
  */
-export function moveInstrumentation(from: Element | string, to: Element | string): void {
-  try {
-    const isFromElString = typeof from === 'string';
-    const isToElString = typeof to === 'string';
-    const fromEl = isFromElString ? document.querySelector(from) : from;
-    const toEl = isToElString ? document.querySelector(to) : to;
-
-    if (!fromEl || !toEl) {
-      throw new Error(
-        `Invalid elements or selectors provided: from=${isFromElString ? from : from.tagName}, to=${isToElString ? to : to.tagName}`
-      );
-    }
-
-    const attributesToMove = [...fromEl.attributes]
+export function moveInstrumentation(from: Element, to: Element): void {
+  moveAttributes(
+    from,
+    to,
+    [...from.attributes]
       .map(({ nodeName }) => nodeName)
-      .filter((attr) => attr.startsWith('data-aue-') || attr.startsWith('data-richtext-'));
-
-    moveAttributes(fromEl, toEl, attributesToMove);
-  } catch (error) {
-    DebuggerService.error('Error moving instrumentation attributes:', error);
-  }
+      .filter((attr) => attr.startsWith('data-aue-') || attr.startsWith('data-richtext-'))
+  );
 }

@@ -6,8 +6,8 @@ import { cleanUpBlock } from 'Utils/cleanUpBlock';
 import { moveInstrumentation } from './moveInstrumentation';
 
 interface MoveInstrumentationsOption {
-  from: Element | string;
-  to: Element | string;
+  from: Element;
+  to: Element;
 }
 
 interface RenderBlockOptions {
