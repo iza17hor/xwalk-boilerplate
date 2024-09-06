@@ -2,6 +2,7 @@
 import { html, nothing, render, TemplateResult } from 'lit';
 
 import './customtitle.scss';
+import { cleanUpBlock } from 'Utils/cleanUpBlock';
 // import { renderBlock } from 'Helpers/renderBlock';
 
 // const template = (text: string): TemplateResult => {
@@ -56,11 +57,11 @@ export default function (block: HTMLElement) {
   console.log('>>> e p-tag', titleText);
   console.log('>>> e p-attributes', titleAttributes);
 
-  const templateTarget = document.createElement('div');
+  cleanUpBlock(block);
 
-  render(template({ titleText }), templateTarget);
+  render(template({ titleText }), block);
 
-  const h1 = templateTarget.querySelector('h1');
+  const h1 = block.querySelector('h1');
   titleAttributes?.forEach((attr) => {
     const key = Object.keys(attr)[0];
     const value = attr[key];
@@ -68,8 +69,6 @@ export default function (block: HTMLElement) {
     if (!value) return;
     h1?.setAttribute(key, value);
   });
-
-  block.innerHTML = templateTarget.innerHTML;
 
   // const textElement = block.children[0].children[0];
 
