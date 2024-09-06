@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-// import { html, TemplateResult } from 'lit';
+import { html, nothing, render, TemplateResult } from 'lit';
 
 import './customtitle.scss';
 // import { renderBlock } from 'Helpers/renderBlock';
@@ -32,12 +32,42 @@ function getDataForField(block: HTMLElement) {
   };
 }
 
+type Props = {
+  titleText?: string | null;
+  titleAttributes?: Record<string, string>;
+};
+
+const template = ({ titleText }: Props): TemplateResult | typeof nothing => {
+  if (!titleText) {
+    return nothing;
+  }
+
+  return html`
+    <div style="background: red">
+      <h1>${titleText}</h1>
+    </div>
+  `;
+};
+
 export default function (block: HTMLElement) {
   const dataFetcher = getDataForField(block);
-  const title = dataFetcher('customTitle');
+  const { textContent: titleText, dataAttributes: titleAttributes } = dataFetcher('customTitle');
   console.log('>>> 1', block);
-  console.log('>>> y p-tag', title.textContent);
-  console.log('>>> y p-attributes', title.dataAttributes);
+  console.log('>>> y p-tag', titleText);
+  console.log('>>> y p-attributes', titleAttributes);
+
+  const templateTarget = document.createElement('div');
+
+  render(template({ titleText }), templateTarget);
+
+  const h1 = templateTarget.querySelector('h1');
+  titleAttributes?.forEach((attr) => {
+    const key = Object.keys(attr)[0];
+    const value = attr[key];
+    console.log('>>> setKeyValue', key, value);
+    if (!value) return;
+    h1?.setAttribute(key, value);
+  });
 
   // const textElement = block.children[0].children[0];
 
