@@ -58,7 +58,7 @@ const template = ({ titleText, titleType = 'h2' }: Props): TemplateResult | type
 
   return html`
     <div style="background: red">
-      <${tag}>${titleText}</${tag}>
+      <${tag} data-js-title-type>${titleText}</${tag}>
     </div>
   `;
 };
@@ -68,20 +68,20 @@ export default function (block: HTMLElement) {
   const { textContent: titleText, dataAttributes: titleAttributes } = dataFetcher('customTitle');
   const { textContent: titleType } = dataFetcher('titleType') || 'h2';
   console.log('>>> 1', block);
-  console.log('>>> aa p-tag', titleText);
-  console.log('>>> aa p-attributes', titleAttributes);
+  console.log('>>> ha p-tag', titleText);
+  console.log('>>> ha p-attributes', titleAttributes);
 
   cleanUpBlock(block);
 
   render(template({ titleText, titleType }), block);
 
-  const h1 = block.querySelector('h1');
+  const headline = block.querySelector('[data-js-title-type]');
   titleAttributes?.forEach((attr) => {
     const key = Object.keys(attr)[0];
     const value = attr[key];
     console.log('>>> setKeyValue', key, value);
     if (!value) return;
-    h1?.setAttribute(key, value);
+    headline?.setAttribute(key, value);
   });
 
   // const textElement = block.children[0].children[0];
