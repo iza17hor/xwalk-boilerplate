@@ -8,6 +8,12 @@ import './customtitle.scss';
 //   return html`<h1>${text}</h1>`;
 // };
 
+function createAttributeMap(attributes: NamedNodeMap) {
+  return [...attributes]
+    .map(({ nodeName }) => nodeName)
+    .filter((attr) => attr.startsWith('data-aue-') || attr.startsWith('data-richtext-'));
+}
+
 function getDataForField(block: HTMLElement) {
   return (propName: string) => {
     const field = block.querySelector(`[data-aue-prop="${propName}"]`);
@@ -15,7 +21,7 @@ function getDataForField(block: HTMLElement) {
     return {
       textContent: field?.textContent,
       innerHTML: field?.innerHTML,
-      dataAttributes: field?.attributes,
+      dataAttributes: field?.attributes ? createAttributeMap(field?.attributes) : null,
     };
   };
 }
