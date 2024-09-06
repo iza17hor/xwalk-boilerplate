@@ -1,91 +1,49 @@
-/* eslint-disable no-console */
 import { html, nothing, render, TemplateResult } from 'lit';
 
-import './customtitle.scss';
 import { cleanUpBlock } from 'Utils/cleanUpBlock';
-// import { renderBlock } from 'Helpers/renderBlock';
+import { headlineTagMap, HeadlineTags, validHeadlineTags } from 'Utils/tagMap';
+import { getElementData } from 'Utils/getElementData';
 
-// const template = (text: string): TemplateResult => {
-//   return html`<h1>${text}</h1>`;
-// };
+import './customtitle.scss';
 
-function createAttributeMap(field: Element) {
-  const attributes = field.attributes;
-  return [...attributes]
-    .map(({ nodeName }) => nodeName)
-    .filter((attr) => attr.startsWith('data-aue-') || attr.startsWith('data-richtext-'))
-    .map((attribute) => {
-      return {
-        [attribute]: field.getAttribute(attribute),
-      };
-    });
-}
-
-function getDataForField(block: HTMLElement) {
-  return (propName: string) => {
-    const field = block.querySelector(`[data-aue-prop="${propName}"]`);
-
-    return {
-      textContent: field?.textContent,
-      innerHTML: field?.innerHTML,
-      dataAttributes: field ? createAttributeMap(field) : null,
-    };
-  };
-}
-
-type Props = {
-  titleText?: string | null;
+type TemplateProps = {
+  titleText?: string;
+  titleType?: HeadlineTags | undefined;
   titleAttributes?: Record<string, string>;
 };
 
-const template = ({ titleText }: Props): TemplateResult | typeof nothing => {
+const template = ({ titleText, titleType = 'h2' }: TemplateProps): TemplateResult | typeof nothing => {
   if (!titleText) {
     return nothing;
   }
 
+  const tag = headlineTagMap[titleType];
+
   return html`
     <div style="background: red">
-      <h1>${titleText}</h1>
+      <${tag} data-js-title-type>${titleText}</${tag}>
     </div>
   `;
 };
 
 export default function (block: HTMLElement) {
-  const dataFetcher = getDataForField(block);
-  const { textContent: titleText, dataAttributes: titleAttributes } = dataFetcher('customTitle');
-  console.log('>>> 1', block);
-  console.log('>>> f p-tag', titleText);
-  console.log('>>> f p-attributes', titleAttributes);
+  const getDataForProperty = getElementData(block);
+  const { textContent: titleText, dataAttributes: titleAttributes } = getDataForProperty('customTitle');
+  const { textContent: titleType } = getDataForProperty('titleType');
+
+  // Ensure that titleType is one of the valid HeadlineTags or use a default ('h2')
+  const normalizedTitleType = validHeadlineTags.includes(titleType as HeadlineTags)
+    ? (titleType as HeadlineTags)
+    : 'h2';
 
   cleanUpBlock(block);
-  render(template({ titleText }), block);
+  render(template({ titleText, titleType: normalizedTitleType }), block, {});
 
-  const h1 = block.querySelector('h1');
+  const headline = block.querySelector('[data-js-title-type]');
   titleAttributes?.forEach((attr) => {
     const key = Object.keys(attr)[0];
     const value = attr[key];
-    console.log('>>> setKeyValue', key, value);
     if (!value) return;
-    h1?.setAttribute(key, value);
+    headline?.setAttribute(key, value);
   });
-
-  // const textElement = block.children[0].children[0];
-
-  // renderBlock({
-  //   template: template(text),
-  //   container: block,
-  //   moveInstrumentationsOptions: {
-  //     from: textElement,
-  //     to: block.querySelector('h1') as Element,
-  //   },
-  // });
-
-  // console.log('>>> render finished', block);
-  // Array.from(attributes).forEach((attr) => {
-  //   const value = block.querySelector('p')!.getAttribute(attr);
-  //   if (value) {
-  //     to.setAttribute(attr, value);
-  //     from.removeAttribute(attr);
-  //   }
-  // });
 }
