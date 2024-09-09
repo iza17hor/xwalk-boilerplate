@@ -1,7 +1,6 @@
 import { html, nothing, render, TemplateResult } from 'lit';
 
 import { cleanUpBlock } from 'Utils/cleanUpBlock';
-
 import './customtitle.scss';
 import { getElementData } from 'Utils/getElementData';
 import { moveInstrumentation } from 'Helpers/moveInstrumentation';
@@ -35,24 +34,19 @@ export default function (block: HTMLElement) {
   console.log('>>> decorate block a', block);
 
   const getDataForRow = getElementData(block);
-  const { textContent: titleText, element: titleElement } = getDataForRow(0);
-  const { textContent: titleType } = getDataForRow(1);
+  const titleRow = getDataForRow(0, ['title']);
+  const titleElement = titleRow.title.element;
 
-  console.log('>>> titleText', titleText);
+  // eslint-disable-next-line
+  console.log('>>> titleRow', titleRow);
 
   cleanUpBlock(block);
-  render(template({ titleText, titleType }), block);
+  render(template({ titleText: titleRow.title.textContent }), block);
 
-  // eslint-disable-next-line no-console
-  console.log('>>> rendered a');
+  // // eslint-disable-next-line no-console
+  // console.log('>>> rendered a');
 
   const headline = block.querySelector('[data-js-title]') as HTMLElement;
 
   moveInstrumentation(titleElement, headline);
-  // titleAttributes?.forEach((attr) => {
-  //   const key = Object.keys(attr)[0];
-  //   const value = attr[key];
-  //   if (!value) return;
-  //   headline?.setAttribute(key, value);
-  // });
 }

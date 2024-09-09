@@ -1,21 +1,31 @@
-import { createAttributeMap } from './createAttributeMap';
-
 export function getElementData(block: HTMLElement) {
-  return (rowIndex: number = 0) => {
-    const row = block.children[rowIndex] as HTMLElement;
+  return <T extends string>(
+    rowIndex: number = 0,
+    entries: T[]
+  ): Record<T, { element: Element; textContent: string | undefined; innerHTML: string | undefined }> => {
+    const row = block.children[rowIndex];
+    if (!row)
+      return {} as Record<T, { element: Element; textContent: string | undefined; innerHTML: string | undefined }>;
 
-    let element = row;
+    let rowElements = Array.from(row.children);
+    const result = {} as Record<
+      T,
+      { element: Element; textContent: string | undefined; innerHTML: string | undefined }
+    >;
 
-    // find the deepest child element
-    while (element.children.length) {
-      element = element.children[0] as HTMLElement;
+    // Find the deepest children
+    while (rowElements.length && rowElements[0].children.length) {
+      rowElements = Array.from(rowElements[0].children);
     }
 
-    return {
-      element,
-      textContent: element?.textContent || undefined,
-      innerHTML: element?.innerHTML || undefined,
-      dataAttributes: element ? createAttributeMap(element) : undefined,
-    };
+    entries.forEach((entry, index) => {
+      result[entry] = {
+        element: rowElements[index],
+        textContent: rowElements[index]?.textContent || undefined,
+        innerHTML: rowElements[index]?.innerHTML || undefined,
+      };
+    });
+
+    return result;
   };
 }
