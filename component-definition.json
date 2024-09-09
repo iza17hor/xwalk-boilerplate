@@ -183,11 +183,13 @@
                   "name": "CustomTitle",
                   "headline": {
                     "resourceType": "core/franklin/components/block/v1/block",
-                    "model": "manTitle"
+                    "model": "manTitle",
+                    "manTitle": "MAN Title Dummy"
                   },
                   "subline": {
                     "resourceType": "core/franklin/components/block/v1/block",
-                    "model": "subline"
+                    "model": "subline",
+                    "sublineText": "Subline Text Dummy"
                   }
                 }
               }
