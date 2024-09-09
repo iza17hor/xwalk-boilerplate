@@ -160,18 +160,38 @@
     ]
   },
   {
-    "id": "customTitle",
+    "id": "subline",
     "fields": [
       {
         "component": "text",
-        "name": "customTitle",
-        "label": "Custom Title",
+        "name": "sublineText",
+        "label": "Subline",
+        "valueType": "string"
+      },
+      {
+        "component": "select",
+        "name": "classes",
+        "label": "Subline Variant",
+        "options": [
+          { "name": "large", "value": "subline-large" },
+          { "name": "normal", "value": "subline-normal" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "manTitle",
+    "fields": [
+      {
+        "component": "text",
+        "name": "manTitle",
+        "label": "Title Text",
         "value": "Title",
         "valueType": "string"
       },
       {
         "component": "select",
-        "name": "customTitleType",
+        "name": "manTitleType",
         "label": "Headline Type",
         "options": [
           { "name": "h1", "value": "h1" },
@@ -181,38 +201,11 @@
           { "name": "h5", "value": "h5" },
           { "name": "h6", "value": "h6" }
         ]
-      },
-      {
-        "component": "multiselect",
-        "name": "classes",
-        "label": "Title Options",
-        "maxSize": 3,
-        "valueType": "string",
-        "options": [
-          {
-            "name": "Title Style",
-            "children": [
-              { "name": "h1", "value": "h1-style" },
-              { "name": "h2", "value": "h2-style" },
-              { "name": "h3", "value": "h3-style" },
-              { "name": "h4", "value": "h4-style" },
-              { "name": "h5", "value": "h5-style" },
-              { "name": "h6", "value": "h6-style" }
-            ]
-          },
-          {
-            "name": "Large Subline",
-            "children": [{ "name": "Large", "value": "large-subline" }]
-          }
-        ]
-      },
-      {
-        "component": "text",
-        "name": "customSubline",
-        "label": "Custom Subline",
-        "valueType": "string"
       }
     ]
+  },
+  {
+    "id": "customTitle"
   },
   {
     "id": "hero",

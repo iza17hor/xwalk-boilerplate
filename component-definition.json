@@ -143,6 +143,36 @@
           }
         },
         {
+          "title": "ManTitle",
+          "id": "manTitle",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "ManTitle",
+                  "model": "manTitle"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Subline",
+          "id": "subline",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Subline",
+                  "model": "subline"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "CustomTitle",
           "id": "customTitle",
           "plugins": {

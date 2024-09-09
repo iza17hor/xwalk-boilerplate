@@ -8,6 +8,10 @@
     "components": ["text", "image", "button", "title", "hero", "customTitle", "cards", "columns", "fragment"]
   },
   {
+    "id": "customTitle",
+    "components": ["subline", "manTitle"]
+  },
+  {
     "id": "cards",
     "components": ["card"]
   },
