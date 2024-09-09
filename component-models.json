@@ -171,6 +171,7 @@
         "component": "multiselect",
         "name": "property",
         "label": "Title Options",
+        "maxSize": 2,
         "valueType": "string",
         "options": [
           {
