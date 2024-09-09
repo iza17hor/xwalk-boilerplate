@@ -1,9 +1,11 @@
-import { html, nothing, render, TemplateResult } from 'lit';
+import { nothing, render, TemplateResult } from 'lit';
+import { html, literal, StaticValue } from 'lit/static-html.js';
 
 import { cleanUpBlock } from 'Utils/cleanUpBlock';
 import './customtitle.scss';
 import { getElementData } from 'Utils/getElementData';
 import { moveInstrumentation } from 'Helpers/moveInstrumentation';
+import { getBlockModifiers } from 'Utils/getBlockModifiers';
 
 type TemplateProps = {
   titleText?: string;
@@ -11,14 +13,27 @@ type TemplateProps = {
   titleAttributes?: Record<string, string>;
 };
 
-const renderHeadline = (tag: string, text: string, cssClass: string) => {
-  if (tag === 'h1') return html`<h1 data-js-title class="${cssClass}">${text}</h1>`;
-  if (tag === 'h2') return html`<h2 data-js-title class="${cssClass}">${text}</h2>`;
-  if (tag === 'h3') return html`<h3 data-js-title class="${cssClass}">${text}</h3>`;
-  if (tag === 'h4') return html`<h4 data-js-title class="${cssClass}">${text}</h4>`;
-  if (tag === 'h5') return html`<h5 data-js-title class="${cssClass}">${text}</h5>`;
-  if (tag === 'h6') return html`<h6 data-js-title class="${cssClass}">${text}</h6>`;
-  return nothing;
+const possibleTagTypeModifiers = ['h1-tag', 'h2-tag', 'h3-tag', 'h4-tag', 'h5-tag', 'h6-tag'];
+
+const getTagTypeModifier = (modifiers: string[]) => {
+  return modifiers.find((modifier) => possibleTagTypeModifiers.includes(modifier));
+};
+
+const renderHeadline = (tagType: string, text: string, cssClass: string) => {
+  const tagMap = {
+    h1: literal`h1`,
+    h2: literal`h2`,
+    h3: literal`h3`,
+    h4: literal`h4`,
+    h5: literal`h5`,
+    h6: literal`h6`,
+  };
+
+  const tag = tagMap[tagType] as StaticValue;
+
+  return html`
+    <${tag} data-js-title class="${cssClass}">${text}</${tag}>
+  `;
 };
 
 const template = ({ titleText, titleType = 'h2' }: TemplateProps): TemplateResult | typeof nothing => {
@@ -31,20 +46,17 @@ const template = ({ titleText, titleType = 'h2' }: TemplateProps): TemplateResul
 
 export default function (block: HTMLElement) {
   // eslint-disable-next-line no-console
-  console.log('>>> decorate block a', block);
+  const modifiers = getBlockModifiers(block, 'customtitle');
 
   const getDataForRow = getElementData(block);
   const titleRow = getDataForRow(0, ['title']);
   const titleElement = titleRow.title.element;
 
   // eslint-disable-next-line
-  console.log('>>> titleRow', titleRow);
+  console.log('modifiers', modifiers);
 
   cleanUpBlock(block);
-  render(template({ titleText: titleRow.title.textContent }), block);
-
-  // // eslint-disable-next-line no-console
-  // console.log('>>> rendered a');
+  render(template({ titleText: titleRow.title.textContent, titleType: getTagTypeModifier(modifiers) }), block);
 
   const headline = block.querySelector('[data-js-title]') as HTMLElement;
 

@@ -169,32 +169,32 @@
       },
       {
         "component": "select",
-        "name": "titleType",
+        "name": "classes",
         "label": "Title Type",
         "options": [
           {
             "name": "h1",
-            "value": "h1"
+            "value": "h1-tag"
           },
           {
             "name": "h2",
-            "value": "h2"
+            "value": "h2-tag"
           },
           {
             "name": "h3",
-            "value": "h3"
+            "value": "h3-tag"
           },
           {
             "name": "h4",
-            "value": "h4"
+            "value": "h4-tag"
           },
           {
             "name": "h5",
-            "value": "h5"
+            "value": "h5-tag"
           },
           {
             "name": "h6",
-            "value": "h6"
+            "value": "h6-tag"
           }
         ]
       }
