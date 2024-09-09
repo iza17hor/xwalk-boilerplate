@@ -9,9 +9,10 @@ import { getBlockModifiers } from 'Utils/getBlockModifiers';
 
 type TemplateProps = {
   titleText?: string;
+  subline?: string;
   tagName?: string;
   cssClass?: string;
-  titleAttributes?: Record<string, string>;
+  sublineLarge?: string;
 };
 
 const possibleTagNameModifiers = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
@@ -42,16 +43,29 @@ const renderHeadline = (tagName: string, text: string, cssClass: string) => {
   `;
 };
 
+const renderSubline = (subline: string, sublineLarge?: string) => {
+  if (subline === '') return nothing;
+  return html`<p data-js-subline class="module-subtitle${sublineLarge === 'large-subline' ? ' large-subline' : ''}">
+    ${subline}
+  </p>`;
+};
+
 const template = ({
   titleText,
+  subline = '',
   tagName = 'h2',
   cssClass = 'h1-style',
+  sublineLarge = '',
 }: TemplateProps): TemplateResult | typeof nothing => {
   if (!titleText) {
     return nothing;
   }
 
-  return html` <div style="background: red">${renderHeadline(tagName, titleText, cssClass)}</div> `;
+  return html`
+    <div style="background: red">
+      ${renderHeadline(tagName, titleText, cssClass)}${renderSubline(subline, sublineLarge)}
+    </div>
+  `;
 };
 
 export default function (block: HTMLElement) {
@@ -60,22 +74,26 @@ export default function (block: HTMLElement) {
 
   const getDataForRow = getElementData(block);
   const titleRow = getDataForRow(0, ['title']);
+  const sublineRow = getDataForRow(1, ['subline']);
   const titleElement = titleRow.title.element;
+  const sublineElement = sublineRow.subline.element;
 
   // eslint-disable-next-line
-  console.log('modifiers 2', modifiers);
 
   cleanUpBlock(block);
   render(
     template({
       titleText: titleRow.title.textContent,
+      subline: sublineRow.subline.innerHTML,
       tagName: getTagNameModifier(modifiers),
       cssClass: getStyleModifier(modifiers),
     }),
     block
   );
 
-  const headline = block.querySelector('[data-js-title]') as HTMLElement;
+  const headlineEl = block.querySelector('[data-js-title]') as HTMLElement;
+  const sublineEl = block.querySelector('[data-js-subline]') as HTMLElement;
 
-  moveInstrumentation(titleElement, headline);
+  moveInstrumentation(titleElement, headlineEl);
+  moveInstrumentation(sublineElement, sublineEl);
 }

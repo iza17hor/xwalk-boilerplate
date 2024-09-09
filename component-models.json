@@ -165,7 +165,9 @@
       {
         "component": "text",
         "name": "customTitle",
-        "label": "Custom Title"
+        "label": "Custom Title",
+        "value": "Title",
+        "valueType": "string"
       },
       {
         "component": "multiselect",
@@ -195,8 +197,21 @@
               { "name": "h5", "value": "h5-style" },
               { "name": "h6", "value": "h6-style" }
             ]
+          },
+          {
+            "name": "Large Subline",
+            "children": [
+              { "name": "Large", "value": "large-subline" }
+            ]
           }
         ]
+      },
+      {
+        "component": "text",
+        "name": "customSubline",
+        "label": "Custom Subline",
+        "valueType": "string"
+
       }
     ]
   },
