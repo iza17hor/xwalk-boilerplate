@@ -70,31 +70,35 @@ const template = ({
 
 export default function (block: HTMLElement) {
   // eslint-disable-next-line no-console
-  const modifiers = getBlockModifiers(block, 'customtitle');
-
-  const getDataForRow = getElementData(block);
-  const titleRow = getDataForRow(0, ['title']);
-  const sublineRow = getDataForRow(1, ['subline']);
-  const titleElement = titleRow.title.element;
-  const sublineElement = sublineRow.subline.element;
-
-  // eslint-disable-next-line
-
-  cleanUpBlock(block);
-  render(
-    template({
-      titleText: titleRow.title.textContent,
-      subline: sublineRow.subline.innerHTML,
-      tagName: getTagNameModifier(modifiers),
-      cssClass: getStyleModifier(modifiers),
-      sublineLarge: modifiers.includes('large-subline') ? 'large-subline' : '',
-    }),
-    block
-  );
-
-  const headlineEl = block.querySelector('[data-js-title]') as HTMLElement;
-  const sublineEl = block.querySelector('[data-js-subline]') as HTMLElement;
-
-  moveInstrumentation(titleElement, headlineEl);
-  moveInstrumentation(sublineElement, sublineEl);
+  console.log('>>> customTitle rendered', block);
 }
+// export default function (block: HTMLElement) {
+//   // eslint-disable-next-line no-console
+//   const modifiers = getBlockModifiers(block, 'customtitle');
+
+//   const getDataForRow = getElementData(block);
+//   const titleRow = getDataForRow(0, ['title']);
+//   const sublineRow = getDataForRow(1, ['subline']);
+//   const titleElement = titleRow.title.element;
+//   const sublineElement = sublineRow.subline.element;
+
+//   // eslint-disable-next-line
+
+//   cleanUpBlock(block);
+//   render(
+//     template({
+//       titleText: titleRow.title.textContent,
+//       subline: sublineRow.subline.innerHTML,
+//       tagName: getTagNameModifier(modifiers),
+//       cssClass: getStyleModifier(modifiers),
+//       sublineLarge: modifiers.includes('large-subline') ? 'large-subline' : '',
+//     }),
+//     block
+//   );
+
+//   const headlineEl = block.querySelector('[data-js-title]') as HTMLElement;
+//   const sublineEl = block.querySelector('[data-js-subline]') as HTMLElement;
+
+//   moveInstrumentation(titleElement, headlineEl);
+//   moveInstrumentation(sublineElement, sublineEl);
+// }
