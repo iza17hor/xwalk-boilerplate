@@ -173,7 +173,7 @@
         "component": "multiselect",
         "name": "classes",
         "label": "Title Options",
-        "maxSize": 2,
+        "maxSize": 3,
         "valueType": "string",
         "options": [
           {
