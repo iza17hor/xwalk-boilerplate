@@ -207,9 +207,11 @@
   {
     "id": "customTitle",
     "item_0": {
+      "name": "manTitle",
       "model": "manTitle"
     },
     "item_1": {
+      "name": "subline",
       "model": "subline"
     }
   },
