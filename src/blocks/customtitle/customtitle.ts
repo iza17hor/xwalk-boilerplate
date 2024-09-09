@@ -1,9 +1,10 @@
 import { html, nothing, render, TemplateResult } from 'lit';
 
 import { cleanUpBlock } from 'Utils/cleanUpBlock';
-import { getElementData } from 'Utils/getElementData';
 
 import './customtitle.scss';
+import { getElementData } from 'Utils/getElementData';
+import { moveInstrumentation } from 'Helpers/moveInstrumentation';
 
 type TemplateProps = {
   titleText?: string;
@@ -11,24 +12,30 @@ type TemplateProps = {
   titleAttributes?: Record<string, string>;
 };
 
+const renderHeadline = (tag: string, text: string, cssClass: string) => {
+  if (tag === 'h1') return html`<h1 data-js-title class="${cssClass}">${text}</h1>`;
+  if (tag === 'h2') return html`<h2 data-js-title class="${cssClass}">${text}</h2>`;
+  if (tag === 'h3') return html`<h3 data-js-title class="${cssClass}">${text}</h3>`;
+  if (tag === 'h4') return html`<h4 data-js-title class="${cssClass}">${text}</h4>`;
+  if (tag === 'h5') return html`<h5 data-js-title class="${cssClass}">${text}</h5>`;
+  if (tag === 'h6') return html`<h6 data-js-title class="${cssClass}">${text}</h6>`;
+  return nothing;
+};
+
 const template = ({ titleText, titleType = 'h2' }: TemplateProps): TemplateResult | typeof nothing => {
   if (!titleText) {
     return nothing;
   }
 
-  return html`
-    <div style="background: red">
-      <h1 data-js-title-type>${titleText}</h1>
-    </div>
-  `;
+  return html` <div style="background: red">${renderHeadline(titleType, titleText, 'custom-title')}</div> `;
 };
 
 export default function (block: HTMLElement) {
   // eslint-disable-next-line no-console
-  console.log('>>> decorate block b', block);
+  console.log('>>> decorate block a', block);
 
   const getDataForRow = getElementData(block);
-  const { textContent: titleText, dataAttributes: titleAttributes } = getDataForRow(0);
+  const { textContent: titleText, element: titleElement } = getDataForRow(0);
   const { textContent: titleType } = getDataForRow(1);
 
   console.log('>>> titleText', titleText);
@@ -39,11 +46,13 @@ export default function (block: HTMLElement) {
   // eslint-disable-next-line no-console
   console.log('>>> rendered a');
 
-  const headline = block.querySelector('[data-js-title-type]');
-  titleAttributes?.forEach((attr) => {
-    const key = Object.keys(attr)[0];
-    const value = attr[key];
-    if (!value) return;
-    headline?.setAttribute(key, value);
-  });
+  const headline = block.querySelector('[data-js-title]') as HTMLElement;
+
+  moveInstrumentation(titleElement, headline);
+  // titleAttributes?.forEach((attr) => {
+  //   const key = Object.keys(attr)[0];
+  //   const value = attr[key];
+  //   if (!value) return;
+  //   headline?.setAttribute(key, value);
+  // });
 }
