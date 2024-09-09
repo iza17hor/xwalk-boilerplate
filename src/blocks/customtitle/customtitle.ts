@@ -87,6 +87,7 @@ export default function (block: HTMLElement) {
       subline: sublineRow.subline.innerHTML,
       tagName: getTagNameModifier(modifiers),
       cssClass: getStyleModifier(modifiers),
+      sublineLarge: modifiers.includes('large-subline') ? 'large-subline' : '',
     }),
     block
   );
