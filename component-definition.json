@@ -180,7 +180,15 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "CustomTitle"
+                  "name": "CustomTitle",
+                  "headline": {
+                    "resourceType": "core/franklin/components/block/v1/block",
+                    "model": "manTitle"
+                  },
+                  "subline": {
+                    "resourceType": "core/franklin/components/block/v1/block",
+                    "model": "subline"
+                  }
                 }
               }
             }
