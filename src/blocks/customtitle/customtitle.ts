@@ -9,14 +9,20 @@ import { getBlockModifiers } from 'Utils/getBlockModifiers';
 
 type TemplateProps = {
   titleText?: string;
-  tagName?: string | undefined;
+  tagName?: string;
+  cssClass?: string;
   titleAttributes?: Record<string, string>;
 };
 
 const possibleTagNameModifiers = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+const possibleStyleModifiers = ['h1-style', 'h2-style', 'h3-style', 'h4-style', 'h5-style', 'h6-style'];
 
 const getTagNameModifier = (modifiers: string[]) => {
-  return modifiers.find((modifier) => possibleTagNameModifiers.includes(modifier));
+  return modifiers.find((modifier) => possibleTagNameModifiers.includes(modifier)) || 'h2';
+};
+
+const getStyleModifier = (modifiers: string[]) => {
+  return modifiers.find((modifier) => possibleStyleModifiers.includes(modifier)) || 'h1-style';
 };
 
 const renderHeadline = (tagName: string, text: string, cssClass: string) => {
@@ -32,16 +38,20 @@ const renderHeadline = (tagName: string, text: string, cssClass: string) => {
   const tag = tagMap[tagName] as StaticValue;
 
   return html`
-    <${tag} data-js-title class="${cssClass}">${text}</${tag}>
+    <${tag} data-js-title class="custom-title ${cssClass.replace('-style', '')}">${text}</${tag}>
   `;
 };
 
-const template = ({ titleText, tagName = 'h2' }: TemplateProps): TemplateResult | typeof nothing => {
+const template = ({
+  titleText,
+  tagName = 'h2',
+  cssClass = 'h1-style',
+}: TemplateProps): TemplateResult | typeof nothing => {
   if (!titleText) {
     return nothing;
   }
 
-  return html` <div style="background: red">${renderHeadline(tagName, titleText, 'custom-title')}</div> `;
+  return html` <div style="background: red">${renderHeadline(tagName, titleText, cssClass)}</div> `;
 };
 
 export default function (block: HTMLElement) {
@@ -56,7 +66,14 @@ export default function (block: HTMLElement) {
   console.log('modifiers 2', modifiers);
 
   cleanUpBlock(block);
-  render(template({ titleText: titleRow.title.textContent, tagName: getTagNameModifier(modifiers) }), block);
+  render(
+    template({
+      titleText: titleRow.title.textContent,
+      tagName: getTagNameModifier(modifiers),
+      cssClass: getStyleModifier(modifiers),
+    }),
+    block
+  );
 
   const headline = block.querySelector('[data-js-title]') as HTMLElement;
 
