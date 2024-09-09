@@ -164,20 +164,23 @@
     "fields": [
       {
         "component": "text",
-        "name": "heading",
-        "label": "Headline"
-      },
-      {
-        "component": "text",
-        "name": "headingType",
-        "label": "Headline Type"
-      },
-      {
-        "component": "text",
         "name": "customTitle",
         "label": "Custom Title",
         "value": "Title",
         "valueType": "string"
+      },
+      {
+        "component": "select",
+        "name": "customTitleType",
+        "label": "Headline Type",
+        "options": [
+          { "name": "h1", "value": "h1" },
+          { "name": "h2", "value": "h2" },
+          { "name": "h3", "value": "h3" },
+          { "name": "h4", "value": "h4" },
+          { "name": "h5", "value": "h5" },
+          { "name": "h6", "value": "h6" }
+        ]
       },
       {
         "component": "multiselect",
@@ -186,17 +189,6 @@
         "maxSize": 3,
         "valueType": "string",
         "options": [
-          {
-            "name": "Semantic Tag",
-            "children": [
-              { "name": "h1", "value": "h1" },
-              { "name": "h2", "value": "h2" },
-              { "name": "h3", "value": "h3" },
-              { "name": "h4", "value": "h4" },
-              { "name": "h5", "value": "h5" },
-              { "name": "h6", "value": "h6" }
-            ]
-          },
           {
             "name": "Title Style",
             "children": [
