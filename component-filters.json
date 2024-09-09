@@ -5,7 +5,19 @@
   },
   {
     "id": "section",
-    "components": ["text", "image", "button", "title", "hero", "customTitle", "cards", "columns", "fragment"]
+    "components": [
+      "text",
+      "image",
+      "button",
+      "title",
+      "hero",
+      "customTitle",
+      "cards",
+      "columns",
+      "fragment",
+      "subline",
+      "manTitle"
+    ]
   },
   {
     "id": "customTitle",
