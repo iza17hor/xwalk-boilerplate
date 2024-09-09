@@ -1,14 +1,13 @@
 import { html, nothing, render, TemplateResult } from 'lit';
 
 import { cleanUpBlock } from 'Utils/cleanUpBlock';
-import { headlineTagMap, HeadlineTags, validHeadlineTags } from 'Utils/tagMap';
 import { getElementData } from 'Utils/getElementData';
 
 import './customtitle.scss';
 
 type TemplateProps = {
   titleText?: string;
-  titleType?: HeadlineTags | undefined;
+  titleType?: string | undefined;
   titleAttributes?: Record<string, string>;
 };
 
@@ -17,11 +16,9 @@ const template = ({ titleText, titleType = 'h2' }: TemplateProps): TemplateResul
     return nothing;
   }
 
-  const tag = headlineTagMap[titleType];
-
   return html`
     <div style="background: red">
-      <${tag} data-js-title-type>${titleText}</${tag}>
+      <h1 data-js-title-type>${titleText}</h1>
     </div>
   `;
 };
@@ -30,17 +27,14 @@ export default function (block: HTMLElement) {
   // eslint-disable-next-line no-console
   console.log('>>> decorate block a', block);
 
-  const getDataForProperty = getElementData(block);
-  const { textContent: titleText, dataAttributes: titleAttributes } = getDataForProperty('customTitle');
-  const { textContent: titleType } = getDataForProperty('titleType');
+  const getDataForRow = getElementData(block);
+  const { textContent: titleText, dataAttributes: titleAttributes } = getDataForRow(0);
+  const { textContent: titleType } = getDataForRow(1);
 
-  // Ensure that titleType is one of the valid HeadlineTags or use a default ('h2')
-  const normalizedTitleType = validHeadlineTags.includes(titleType as HeadlineTags)
-    ? (titleType as HeadlineTags)
-    : 'h2';
+  console.log('>>> titleText', titleText);
 
   cleanUpBlock(block);
-  render(template({ titleText, titleType: normalizedTitleType }), block);
+  render(template({ titleText, titleType }), block);
 
   // eslint-disable-next-line no-console
   console.log('>>> rendered a');
