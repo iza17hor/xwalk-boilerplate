@@ -21,7 +21,7 @@
   },
   {
     "id": "customTitle",
-    "components": ["subline", "manTitle"]
+    "components": ["subline", "manTitle", "card", "text"]
   },
   {
     "id": "cards",
