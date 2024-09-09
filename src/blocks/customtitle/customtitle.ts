@@ -25,7 +25,7 @@ const template = ({ titleText, titleType = 'h2' }: TemplateProps): TemplateResul
 
 export default function (block: HTMLElement) {
   // eslint-disable-next-line no-console
-  console.log('>>> decorate block a', block);
+  console.log('>>> decorate block b', block);
 
   const getDataForRow = getElementData(block);
   const { textContent: titleText, dataAttributes: titleAttributes } = getDataForRow(0);
