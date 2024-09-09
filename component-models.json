@@ -169,14 +169,13 @@
       },
       {
         "component": "multiselect",
-        "name": "property",
+        "name": "classes",
         "label": "Title Options",
         "maxSize": 2,
         "valueType": "string",
         "options": [
           {
             "name": "Semantic Tag",
-            "maxSize": 1,
             "children": [
               { "name": "h1", "value": "h1" },
               { "name": "h2", "value": "h2" },
@@ -188,7 +187,6 @@
           },
           {
             "name": "Title Style",
-            "maxSize": 1,
             "children": [
               { "name": "h1", "value": "h1-style" },
               { "name": "h2", "value": "h2-style" },
