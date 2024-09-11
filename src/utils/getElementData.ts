@@ -1,17 +1,23 @@
+interface ElementData {
+  element?: Element;
+  textContent?: string;
+  innerHTML?: string;
+}
+
+const isUniversalEditor = (): boolean => {
+  return Boolean(document.querySelector('[data-aue-type]'));
+};
+
 export function getElementData(block: HTMLElement) {
-  return <T extends string>(
-    rowIndex: number = 0,
-    entries: T[]
-  ): Record<T, { element: Element; textContent: string | undefined; innerHTML: string | undefined }> => {
+  // eslint-disable-next-line no-console
+  console.log('isUniversalEditor:', isUniversalEditor());
+
+  return <T extends string>(rowIndex: number = 0, entries: T[]): Record<T, ElementData> => {
     const row = block.children[rowIndex];
-    if (!row)
-      return {} as Record<T, { element: Element; textContent: string | undefined; innerHTML: string | undefined }>;
+    if (!row) return {} as Record<T, ElementData>;
 
     let rowElements = Array.from(row.children);
-    const result = {} as Record<
-      T,
-      { element: Element; textContent: string | undefined; innerHTML: string | undefined }
-    >;
+    const result = {} as Record<T, ElementData>;
 
     // Find the deepest children
     while (rowElements.length && rowElements[0].children.length) {
@@ -19,8 +25,10 @@ export function getElementData(block: HTMLElement) {
     }
 
     entries.forEach((entry, index) => {
+      const isRichText = entry.includes('richtext') || entry.includes('rte');
+      const element = isRichText ? rowElements[index].parentElement : rowElements[index];
       result[entry] = {
-        element: rowElements[index],
+        element: element || undefined,
         textContent: rowElements[index]?.textContent || undefined,
         innerHTML: rowElements[index]?.innerHTML || undefined,
       };

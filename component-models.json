@@ -16,47 +16,6 @@
     ]
   },
   {
-    "id": "title",
-    "fields": [
-      {
-        "component": "text",
-        "name": "title",
-        "label": "Title"
-      },
-      {
-        "component": "select",
-        "name": "titleType",
-        "label": "Title Type",
-        "options": [
-          {
-            "name": "h1",
-            "value": "h1"
-          },
-          {
-            "name": "h2",
-            "value": "h2"
-          },
-          {
-            "name": "h3",
-            "value": "h3"
-          },
-          {
-            "name": "h4",
-            "value": "h4"
-          },
-          {
-            "name": "h5",
-            "value": "h5"
-          },
-          {
-            "name": "h6",
-            "value": "h6"
-          }
-        ]
-      }
-    ]
-  },
-  {
     "id": "button",
     "fields": [
       {
@@ -160,28 +119,8 @@
     ]
   },
   {
-    "id": "customTitle",
+    "id": "title",
     "fields": [
-      {
-        "component": "text",
-        "name": "customTitle",
-        "label": "Custom Title",
-        "value": "Title",
-        "valueType": "string"
-      },
-      {
-        "component": "select",
-        "name": "customTitleType",
-        "label": "Headline Type",
-        "options": [
-          { "name": "h1", "value": "h1" },
-          { "name": "h2", "value": "h2" },
-          { "name": "h3", "value": "h3" },
-          { "name": "h4", "value": "h4" },
-          { "name": "h5", "value": "h5" },
-          { "name": "h6", "value": "h6" }
-        ]
-      },
       {
         "component": "multiselect",
         "name": "classes",
@@ -192,12 +131,12 @@
           {
             "name": "Title Style",
             "children": [
-              { "name": "h1", "value": "h1-style" },
-              { "name": "h2", "value": "h2-style" },
-              { "name": "h3", "value": "h3-style" },
-              { "name": "h4", "value": "h4-style" },
-              { "name": "h5", "value": "h5-style" },
-              { "name": "h6", "value": "h6-style" }
+              { "name": "h1", "value": "h1" },
+              { "name": "h2", "value": "h2" },
+              { "name": "h3", "value": "h3" },
+              { "name": "h4", "value": "h4" },
+              { "name": "h5", "value": "h5" },
+              { "name": "h6", "value": "h6" }
             ]
           },
           {
@@ -207,9 +146,9 @@
         ]
       },
       {
-        "component": "text",
-        "name": "customSubline",
-        "label": "Custom Subline",
+        "component": "richtext",
+        "name": "text",
+        "label": "Title",
         "valueType": "string"
       }
     ]

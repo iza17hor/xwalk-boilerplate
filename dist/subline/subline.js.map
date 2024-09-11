@@ -1,0 +1,1 @@
+{"version":3,"file":"subline.js","sources":["../../src/blocks/subline/subline.ts"],"sourcesContent":["export default function (block: HTMLElement) {\n  // eslint-disable-next-line no-console\n  console.log('>>> subline loaded', block);\n}\n"],"names":["subline","block"],"mappings":"AAAA,SAAAA,EAAyBC,EAAoB,CAEnC,QAAA,IAAI,qBAAsBA,CAAK,CACzC"}

@@ -9,19 +9,12 @@
       "text",
       "image",
       "button",
-      "title",
       "hero",
-      "customTitle",
+      "title",
       "cards",
       "columns",
-      "fragment",
-      "subline",
-      "manTitle"
+      "fragment"
     ]
-  },
-  {
-    "id": "customTitle",
-    "components": ["subline", "manTitle", "card", "text"]
   },
   {
     "id": "cards",
