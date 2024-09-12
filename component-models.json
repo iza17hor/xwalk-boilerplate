@@ -178,5 +178,113 @@
         "valueType": "string"
       }
     ]
+  },
+  {
+    "id": "customtitletitle",
+    "fields": [
+      {
+        "component": "text",
+        "name": "customtitletitletext",
+        "label": "Title",
+        "valueType": "string",
+        "value": "My title"
+      },
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Title Options",
+        "maxSize": 3,
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Title Style",
+            "children": [
+              { "name": "h1", "value": "h1" },
+              { "name": "h2", "value": "h2" },
+              { "name": "h3", "value": "h3" },
+              { "name": "h4", "value": "h4" },
+              { "name": "h5", "value": "h5" },
+              { "name": "h6", "value": "h6" }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "customtitlesubline",
+    "fields": [
+      {
+        "component": "text",
+        "name": "customtitlesublinetext",
+        "label": "Subline",
+        "valueType": "string",
+        "value": "My subline"
+      },
+      {
+        "component": "select",
+        "name": "classes",
+        "label": "Subline Options",
+        "options": [
+          {
+            "name": "default",
+            "value": ""
+          },
+          {
+            "name": "large",
+            "value": "large-subline"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "customtitle2",
+    "fields": [
+      {
+        "component": "text",
+        "name": "customtitletitletext",
+        "label": "Title",
+        "valueType": "string",
+        "placeholder": "My title",
+        "value": "My title"
+      },
+      {
+        "component": "select",
+        "name": "titleOptions",
+        "label": "Title Options",
+        "options": [
+          { "name": "h1", "value": "h1" },
+          { "name": "h2", "value": "h2" },
+          { "name": "h3", "value": "h3" },
+          { "name": "h4", "value": "h4" },
+          { "name": "h5", "value": "h5" },
+          { "name": "h6", "value": "h6" }
+        ]
+      },
+      {
+        "component": "text",
+        "name": "customtitlesublinetext",
+        "label": "Subline",
+        "valueType": "string",
+        "placeholder": "My subline",
+        "value": "My subline"
+      },
+      {
+        "component": "select",
+        "name": "sublineOptions",
+        "label": "Subline Options",
+        "options": [
+          {
+            "name": "default",
+            "value": ""
+          },
+          {
+            "name": "large",
+            "value": "large-subline"
+          }
+        ]
+      }
+    ]
   }
 ]

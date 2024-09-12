@@ -13,7 +13,9 @@
       "title",
       "cards",
       "columns",
-      "fragment"
+      "fragment",
+      "customtitle",
+      "customtitle2"
     ]
   },
   {
@@ -27,5 +29,13 @@
   {
     "id": "column",
     "components": ["text", "image", "button", "title"]
+  },
+  {
+    "id": "customtitle",
+    "components": []
+  },
+  {
+    "id": "customtitle2",
+    "components": []
   }
 ]
