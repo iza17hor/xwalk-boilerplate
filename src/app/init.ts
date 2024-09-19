@@ -16,6 +16,12 @@ async function init() {
 }
 
 export function initHLXApp() {
+  const BOILERPLATE_SELECTOR = '__XWALK_BOILERPLATE__';
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  globalThis[BOILERPLATE_SELECTOR] = globalThis[BOILERPLATE_SELECTOR] || {};
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  globalThis[BOILERPLATE_SELECTOR].version = '0.0.1@alpha-0';
+
   if (document.readyState === READY_STATES.interactive || document.readyState === READY_STATES.complete) {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     init();

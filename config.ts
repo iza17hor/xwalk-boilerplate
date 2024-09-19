@@ -22,8 +22,6 @@ export const config: Config = {
   fontsCssPath: './dist/fonts/fonts.css',
   lazyStylesScssPath: './src/styles/sass/lazy-styles.scss',
   lazyStylesCssPath: './dist/lazyStyles/lazyStyles.css',
-  sidekickLibraryStylesScssPath: './src/styles/sass/sidekick-library-styles.scss',
-  sidekickLibraryStylesCssPath: './dist/sidekickLibraryStyles/sidekickLibraryStyles.css',
   editorTsPath: './src/app/editor/editor-support.ts',
   lcpBlocks: [],
 };
