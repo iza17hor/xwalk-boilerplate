@@ -1,7 +1,7 @@
 import HLX from './index';
 
 declare const BOILERPLATE_VERSION: string; // set in vite.config.ts
-const BOILERPLATE_SELECTOR = '__XWALK-BOILERPLATE__';
+const BOILERPLATE_SELECTOR = '__XWALK_BOILERPLATE__';
 
 const READY_STATES = {
   interactive: 'interactive',
