@@ -1,9 +1,9 @@
-import { collectBlocksFromSection } from './collectBlocksFromSection';
-import { loadBlockModules } from './loadBlockModules';
-import { loadBlockStyles } from './loadBlockStyles';
-import { config } from '../../../config';
-import { showSection } from './showSection';
-import { LcpCandidate } from '../app.types';
+// import { collectBlocksFromSection } from './collectBlocksFromSection';
+// import { loadBlockModules } from './loadBlockModules';
+// import { loadBlockStyles } from './loadBlockStyles';
+// import { config } from '../../../config';
+// import { showSection } from './showSection';
+// import { LcpCandidate } from '../app.types';
 
 /**
  * Wait for the Largest Contentful Paint (LCP) candidate to be loaded.
@@ -11,32 +11,28 @@ import { LcpCandidate } from '../app.types';
  * @returns {Promise<void>}
  */
 export async function waitForLCP() {
-  const firstSection: HTMLDivElement | null = document.querySelector('.section');
-  const { lcpBlocks } = config;
-
-  if (firstSection) {
-    const blocks = collectBlocksFromSection(firstSection);
-    const blockPromises = blocks.map(async (block) => {
-      const hasLCPBlock = lcpBlocks?.includes(block.name);
-      if (hasLCPBlock) await Promise.all([loadBlockModules(block.element), loadBlockStyles(block.element)]);
-    });
-
-    await Promise.all(blockPromises);
-    showSection(firstSection);
-  }
-
-  // @ts-ignore
-  document.body.style.display = null;
-  const lcpCandidate = document.querySelector<LcpCandidate>('main img');
-
-  await new Promise<void>((resolve) => {
-    if (lcpCandidate && !lcpCandidate.complete) {
-      lcpCandidate.setAttribute('loading', 'eager');
-      lcpCandidate.setAttribute('fetchpriority', 'high');
-      lcpCandidate.addEventListener('load', () => resolve());
-      lcpCandidate.addEventListener('error', () => resolve());
-    } else {
-      resolve();
-    }
-  });
+  // const firstSection: HTMLDivElement | null = document.querySelector('.section');
+  // const { lcpBlocks } = config;
+  // if (firstSection) {
+  //   const blocks = collectBlocksFromSection(firstSection);
+  //   const blockPromises = blocks.map(async (block) => {
+  //     const hasLCPBlock = lcpBlocks?.includes(block.name);
+  //     if (hasLCPBlock) await Promise.all([loadBlockModules(block.element), loadBlockStyles(block.element)]);
+  //   });
+  //   await Promise.all(blockPromises);
+  //   showSection(firstSection);
+  // }
+  // // @ts-ignore
+  // document.body.style.display = null;
+  // const lcpCandidate = document.querySelector<LcpCandidate>('main img');
+  // await new Promise<void>((resolve) => {
+  //   if (lcpCandidate && !lcpCandidate.complete) {
+  //     lcpCandidate.setAttribute('loading', 'eager');
+  //     lcpCandidate.setAttribute('fetchpriority', 'high');
+  //     lcpCandidate.addEventListener('load', () => resolve());
+  //     lcpCandidate.addEventListener('error', () => resolve());
+  //   } else {
+  //     resolve();
+  //   }
+  // });
 }
