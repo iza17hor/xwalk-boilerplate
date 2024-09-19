@@ -4,6 +4,7 @@ import { defineConfig } from 'vite';
 import minifyHTML from 'rollup-plugin-minify-html-literals';
 import { InputOption } from 'rollup';
 
+import { version } from './package.json';
 import { generateBlockEntries, generateIconNameType } from './vite.helpers';
 import { config } from './config';
 
@@ -29,7 +30,7 @@ export default defineConfig(({ command, mode }) => {
 
   return {
     define: {
-      __BOILERPLATE_VERSION__: JSON.stringify('0.0.1@alpha-0'),
+      BOILERPLATE_VERSION: JSON.stringify(version),
     },
 
     css: {

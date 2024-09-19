@@ -9,7 +9,6 @@ import { transformSections } from '../tasks/transformSections';
 import { decorateRichtext } from './editor-support-rte';
 
 async function applyChanges(event) {
-  console.log('>>> checkmate');
   // redecorate default content and blocks on patches (in the properties rail)
   const { detail } = event;
 

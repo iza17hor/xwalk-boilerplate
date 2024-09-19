@@ -1,8 +1,3 @@
-// import { collectBlocksFromSection } from './collectBlocksFromSection';
-// import { loadBlockModules } from './loadBlockModules';
-// import { loadBlockStyles } from './loadBlockStyles';
-// import { config } from '../../../config';
-// import { showSection } from './showSection';
 import { LcpCandidate } from '../app.types';
 
 /**
@@ -11,17 +6,6 @@ import { LcpCandidate } from '../app.types';
  * @returns {Promise<void>}
  */
 export async function waitForLCP() {
-  // const lcpCandidate = document.querySelector('img');
-  // await new Promise((resolve) => {
-  //   if (lcpCandidate && !lcpCandidate.complete) {
-  //     lcpCandidate.setAttribute('loading', 'eager');
-  //     lcpCandidate.addEventListener('load', resolve);
-  //     lcpCandidate.addEventListener('error', resolve);
-  //   } else {
-  //     resolve();
-  //   }
-  // });
-
   const lcpCandidate = document.querySelector<LcpCandidate>('main img');
 
   await new Promise<void>((resolve) => {
