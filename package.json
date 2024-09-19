@@ -1,7 +1,7 @@
 {
   "name": "@diva-e/xwalk-boilerplate",
   "private": true,
-  "version": "0.1.0-beta.0",
+  "version": "0.0.1",
   "description": "diva-e AEM-XWalk Boilerplate",
   "scripts": {
     "aemUp": "aem up",
