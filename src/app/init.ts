@@ -20,7 +20,7 @@ export function initHLXApp() {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   globalThis[BOILERPLATE_SELECTOR] = globalThis[BOILERPLATE_SELECTOR] || {};
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  globalThis[BOILERPLATE_SELECTOR].version = '0.0.1@alpha-2';
+  globalThis[BOILERPLATE_SELECTOR].version = '0.0.1@alpha-3';
 
   if (document.readyState === READY_STATES.interactive || document.readyState === READY_STATES.complete) {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
