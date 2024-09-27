@@ -1,8 +1,10 @@
+import { resolve } from 'path';
+
 import { defineConfig } from 'vite';
 import minifyHTML from 'rollup-plugin-minify-html-literals';
-import { config } from './config';
-import { resolve } from 'path';
 import { InputOption } from 'rollup';
+
+import { config } from './config';
 
 const isProd = process.env.NODE_ENV === 'production';
 

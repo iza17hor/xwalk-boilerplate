@@ -1,7 +1,5 @@
 import { DebuggerService } from '@kluntje/services';
 
-import { isSidekickLibraryActive } from 'Helpers/sidekick/isSidekickLibraryActive';
-
 import { decorateTemplateAndTheme } from './tasks/decorateTemplateAndTheme';
 import { decorateButtons } from './tasks/decorateButtons';
 import { setDocLanguage } from './tasks/setDocLanguage';
@@ -169,13 +167,7 @@ class HLX {
     // eslint-disable-next-line no-async-promise-executor, @typescript-eslint/no-misused-promises
     const loadLazyTask: Promise<void> = new Promise(async (resolve) => {
       try {
-        const {
-          lazyStylesScssPath,
-          sidekickLibraryStylesScssPath,
-          fontsScssPath,
-          lazyStylesCssPath,
-          sidekickLibraryStylesCssPath,
-        } = config;
+        const { lazyStylesScssPath, fontsScssPath, lazyStylesCssPath } = config;
 
         const main = document.querySelector('main') as HTMLElement;
         await loadSections(main);
@@ -185,9 +177,6 @@ class HLX {
         if (hash && element) element.scrollIntoView();
 
         if (lazyStylesScssPath && lazyStylesCssPath) await loadCSS(lazyStylesCssPath);
-        if (sidekickLibraryStylesScssPath && sidekickLibraryStylesCssPath && isSidekickLibraryActive()) {
-          await loadCSS(sidekickLibraryStylesCssPath);
-        }
         if (fontsScssPath) await loadFonts();
       } catch (error) {
         DebuggerService.error('LoadLazyTask: ', error);

@@ -1,9 +1,12 @@
+import { resolve } from 'path';
+
 import { defineConfig } from 'vite';
 import minifyHTML from 'rollup-plugin-minify-html-literals';
+import { InputOption } from 'rollup';
+
+import { version } from './package.json';
 import { generateBlockEntries, generateIconNameType } from './vite.helpers';
 import { config } from './config';
-import { resolve } from 'path';
-import { InputOption } from 'rollup';
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -26,6 +29,10 @@ export default defineConfig(({ command, mode }) => {
   }
 
   return {
+    define: {
+      BOILERPLATE_VERSION: JSON.stringify(version),
+    },
+
     css: {
       devSourcemap: true,
       preprocessorOptions: {
