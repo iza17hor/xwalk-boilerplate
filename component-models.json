@@ -152,6 +152,13 @@
         "value": "",
         "label": "Your Dynamic Select Label",
         "valueType": "string"
+      },
+      {
+        "component": "asset-select",
+        "name": "yourPropertyName",
+        "value": "",
+        "label": "Your Dynamic Select Label",
+        "valueType": "string"
       }
     ]
   },
@@ -272,9 +279,8 @@
     "fields": [
       {
         "component": "reference",
+        "label": "ReferenceAsset",
         "name": "referenceAsset",
-        "value": "",
-        "label": "referenceAsset",
         "valueType": "string"
       }
     ]
