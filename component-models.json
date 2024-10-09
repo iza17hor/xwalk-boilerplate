@@ -145,6 +145,13 @@
         "value": "",
         "label": "Text",
         "valueType": "string"
+      },
+      {
+        "component": "dynamic-select",
+        "name": "yourPropertyName",
+        "value": "",
+        "label": "Your Dynamic Select Label",
+        "valueType": "string"
       }
     ]
   },
@@ -256,6 +263,18 @@
         "name": "reference",
         "value": "",
         "label": "AEM Content Picker",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "referenceAsset",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "referenceAsset",
+        "value": "",
+        "label": "referenceAsset",
         "valueType": "string"
       }
     ]

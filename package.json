@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "description": "diva-e AEM-XWalk Boilerplate",
   "scripts": {
-    "aemUp": "aem up",
+    "aemUp": "aem up --tls-cert ../../startup/universaleditor/localhost.crt --tls-key ../../startup/universaleditor/localhost.key",
     "build": "tsc && vite build -c vite.config.ts && vite build -c vite.config-editor.ts",
     "build:watch": "run-p tsc:watch vite:watch",
     "build:doc": "ts-node  -O '{\"module\": \"commonjs\"}' ./tools/doc/generate.ts",

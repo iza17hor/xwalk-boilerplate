@@ -1,0 +1,1 @@
+{"version":3,"file":"referenceAsset.js","sources":["../../src/blocks/referenceAsset/referenceAsset.ts"],"sourcesContent":["export default function decorate(block: HTMLElement) {\n  return block;\n}\n"],"names":["decorate","block"],"mappings":"AAAA,SAAwBA,EAASC,EAAoB,CAC5C,OAAAA,CACT"}
